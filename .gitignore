@@ -3,3 +3,4 @@ Finelytics/.vs/
 
 # Игнорировать все файлы с расширением .cache (в любом месте репозитория)
 *.cache
+/Finelytics/Finelytics/.vs
