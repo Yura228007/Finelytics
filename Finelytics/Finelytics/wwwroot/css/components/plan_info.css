@@ -1,0 +1,56 @@
+﻿
+
+/* Окно Подробностей Плана (Plan Details) */
+
+.plan-details-container {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+}
+
+    .plan-details-container h2 {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .plan-details-container p {
+        text-align: center;
+        color: var(--secondary-color);
+        margin-bottom: 30px;
+        font-size: 1.1em;
+    }
+
+#categories-details-list .category-detail-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-info {
+    flex: 1;
+}
+
+    .category-info .category-name {
+        font-weight: bold;
+        font-size: 1.1em;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .category-info span {
+        margin-right: 15px;
+        color: var(--text-color);
+    }
+
+    .category-info .category-spent {
+        color: var(--error-color);
+    }

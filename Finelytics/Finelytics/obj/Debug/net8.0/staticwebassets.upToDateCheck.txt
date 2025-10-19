@@ -1,0 +1,8 @@
+C:\Users\Administrator\.nuget\packages\chartjs.blazor.fork\2.0.2\contentFiles\any\netstandard2.1\wwwroot\ChartJsBlazorInterop.js
+wwwroot\chartJsInterop.js
+wwwroot\css\components\add_transactions.css
+wwwroot\css\components\authorization.css
+wwwroot\css\components\create_plan.css
+wwwroot\css\components\General.css
+wwwroot\css\components\home.css
+wwwroot\css\components\plan_info.css

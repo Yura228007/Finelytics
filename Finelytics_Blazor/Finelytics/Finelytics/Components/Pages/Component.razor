@@ -1,0 +1,125 @@
+﻿@page "/analythics"
+<div class="chart-container">
+    <svg width="500" height="300">
+        <!-- Оси -->
+        <line x1="50" y1="20" x2="50" y2="250" stroke="black" stroke-width="2" />
+        <line x1="50" y1="250" x2="450" y2="250" stroke="black" stroke-width="2" />
+        
+        <!-- Заголовок -->
+        <text x="250" y="15" text-anchor="middle" font-weight="bold">Продажи по месяцам</text>
+        
+        <!-- Точки данных и линии -->
+        @for (int i = 0; i < DataPoints.Count; i++)
+        {
+            var x = i * 70 + 80;
+            var y = 250 - (DataPoints[i] * 8);
+            
+            <!-- Линия между точками -->
+            @if (i > 0)
+            {
+                var prevX = (i - 1) * 70 + 80;
+                var prevY = 250 - (DataPoints[i - 1] * 8);
+                <line x1="@prevX" y1="@prevY" x2="@x" y2="@y" 
+                      stroke="#4bc0c0" stroke-width="2" />
+            }
+            
+            <!-- Точка данных -->
+            <circle cx="@x" cy="@y" r="5" fill="#4bc0c0" 
+                    @onmouseover="() => ShowTooltip(i, x, y)"
+                    @onmouseout="HideTooltip" />
+            
+            <!-- Подпись по оси X -->
+            <text>@Labels[i]</text>
+            
+            <!-- Значение над точкой -->
+            <text>@DataPoints[i]</text>
+        }
+        
+        <!-- Всплывающая подсказка -->
+        @if (showTooltip)
+        {
+            <rect x="@(tooltipX - 30)" y="@(tooltipY - 40)" width="60" height="30" 
+                  fill="white" stroke="gray" rx="3" />
+            <text>
+                @Labels[tooltipIndex]: @DataPoints[tooltipIndex]
+            </text>
+        }
+    </svg>
+    
+    <div class="controls">
+        <button class="btn btn-primary" @onclick="AddRandomPoint">Добавить точку</button>
+        <button class="btn btn-secondary" @onclick="ClearData">Очистить</button>
+    </div>
+</div>
+
+<style>
+    .chart-container {
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    
+    .data-value {
+        font-weight: bold;
+        fill: #333;
+    }
+    
+    .controls {
+        margin-top: 15px;
+    }
+    
+    .btn {
+        margin-right: 10px;
+        padding: 5px 15px;
+    }
+</style>
+
+@code {
+    private ElementReference svElement;
+    private List<double> DataPoints = new() { 12, 19, 3, 5, 2, 3 };
+    private List<string> Labels = new() { "Янв", "Фев", "Мар", "Апр", "Май", "Июн" };
+    
+    private bool showTooltip = false;
+    private int tooltipIndex;
+    private double tooltipX;
+    private double tooltipY;
+    
+    private void ShowTooltip(int index, double x, double y)
+    {
+        tooltipIndex = index;
+        tooltipX = x;
+        tooltipY = y;
+        showTooltip = true;
+        StateHasChanged();
+    }
+    
+    private void HideTooltip()
+    {
+        showTooltip = false;
+        StateHasChanged();
+    }
+    
+    private void AddRandomPoint()
+    {
+        var random = new Random();
+        var newValue = random.Next(1, 20);
+        var months = new[] { "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек" };
+        
+        if (DataPoints.Count < 12)
+        {
+            DataPoints.Add(newValue);
+            Labels.Add(months[DataPoints.Count - 7]);
+            StateHasChanged();
+        }
+    }
+    
+    private void ClearData()
+    {
+        DataPoints.Clear();
+        Labels.Clear();
+        DataPoints.AddRange(new[] { 12.0, 19.0, 3.0, 5.0, 2.0, 3.0 });
+        Labels.AddRange(new[] { "Янв", "Фев", "Мар", "Апр", "Май", "Июн" });
+        StateHasChanged();
+    }
+}

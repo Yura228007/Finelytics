@@ -1,0 +1,26 @@
+﻿@page "/plan-info"
+<link href="css/components/General.css" rel="stylesheet" />
+<link href="css/components/plan_info.css" rel="stylesheet" />
+<div id="plan-details-page" class="page-container hidden">
+    <div class="plan-details-container">
+        <h2 id="details-plan-title"></h2>
+        <p id="details-plan-dates"></p>
+
+        <h3>Категории:</h3>
+        <div id="categories-details-list">
+            <div class="category-detail-item">
+                <div class="category-info">
+                    <span class="category-name">Еда</span>
+                    <span class="category-budget">Бюджет: 15000 руб.</span>
+                    <span class="category-spent">Потрачено: 12000 руб.</span>
+                </div>
+                <button class="btn-add-transaction" data-category-id="1">Добавить запись</button>
+            </div>
+        </div>
+        <button type="button" class="btn-secondary" id="back-to-main-btn">Назад</button>
+    </div>
+</div>
+
+@code {
+
+}
