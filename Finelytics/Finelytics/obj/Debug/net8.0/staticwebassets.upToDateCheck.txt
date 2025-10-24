@@ -1,4 +1,4 @@
-C:\Users\Administrator\.nuget\packages\chartjs.blazor.fork\2.0.2\contentFiles\any\netstandard2.1\wwwroot\ChartJsBlazorInterop.js
+C:\Users\iurii\.nuget\packages\chartjs.blazor.fork\2.0.2\contentFiles\any\netstandard2.1\wwwroot\ChartJsBlazorInterop.js
 wwwroot\chartJsInterop.js
 wwwroot\css\components\add_transactions.css
 wwwroot\css\components\authorization.css
