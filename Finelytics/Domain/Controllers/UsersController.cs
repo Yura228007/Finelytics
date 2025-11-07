@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Finelytics.Models;
 
 namespace Finelytics.Domain.Controllers

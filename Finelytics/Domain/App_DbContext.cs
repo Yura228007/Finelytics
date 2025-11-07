@@ -1,4 +1,4 @@
-﻿using Finelytics.Models;
+using Finelytics.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Finelytics.Domain
@@ -20,8 +20,6 @@ namespace Finelytics.Domain
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-            
         }
     }
 }
