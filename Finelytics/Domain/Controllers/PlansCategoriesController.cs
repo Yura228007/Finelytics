@@ -1,8 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Finelytics.Models;
-namespace Finelytics.Domain.Controllers
+using finelytics.Models;
+namespace finelytics.Domain.Controllers
 {
-    public class PlansCategoriesController : Controller
+    public interface IPlansCategoriesController
+    {
+        public Task<IActionResult> Create(PlanCategory category, string pagePath);
+        public Task<IActionResult> Update(PlanCategory category, string pagePath);
+        public Task<IActionResult> Delete(PlanCategory category, string pagePath);
+        public List<PlanCategory> Read();
+    }
+    public class PlansCategoriesController : Controller, IPlansCategoriesController
     {
         private readonly AppDbContext _context;
         public PlansCategoriesController(AppDbContext context)

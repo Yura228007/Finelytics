@@ -1,12 +1,13 @@
 ﻿@page "/home"  
-<link href="css/components/General.css" rel="stylesheet" />
-<link href="css/components/home.css" rel="stylesheet" />
-<div id="main-page" class="page-container hidden">
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+<link href="app.css" rel="stylesheet" />
+<div id="main-page">
     <header class="main-header">
         <!-- Группируем название сайта и кнопку -->
         <div class="left-header-group">
             <div class="site-title">Планировщик расходов</div>
-            <button id="create-plan-btn" class="btn-primary switch-page-link" data-target-page="plan-form-page" data-form-mode="create">Создать план</button>
+            <button @onclick="@(() => RedirectToPage("create-plan"))" id="create-plan-btn" class="btn-primary switch-page-link">Создать план</button>
         </div>
 
         <div class="user-profile">
@@ -33,10 +34,10 @@
                         <td class="plan-date-range">01.11.2023 - 30.11.2023</td>
                         <td class="plan-status">Активен</td>
                         <td class="plan-actions">
-                            <button class="btn-edit" data-plan-id="1">Редактировать</button>
-                            <button class="btn-details" data-plan-id="1">Подробнее</button>
-                            <button class="btn-close-plan" data-plan-id="1">Закрыть план</button>
-                            <button class="btn-analyze hidden" data-plan-id="1">Проанализировать</button>
+                            <button @onclick="@(() => RedirectToPage("edit-plan"))" class="btn-edit" data-plan-id="1">Редактировать</button>
+                            <button @onclick="@(() => RedirectToPage("plan-info"))" class="btn-details" data-plan-id="1">Подробнее</button>
+                            <button @onclick="@(() => RedirectToPage("home"))" class="btn-close-plan" data-plan-id="1">Закрыть план</button>
+                            <button @onclick="@(() => RedirectToPage("analythics"))" class="btn-analyze hidden" data-plan-id="1">Проанализировать</button>
                         </td>
                     </tr>
                     <!-- Еще один пример -->
@@ -45,10 +46,10 @@
                         <td class="plan-date-range">01.07.2024 - 15.07.2024</td>
                         <td class="plan-status">Активен</td>
                         <td class="plan-actions">
-                            <button class="btn-edit" data-plan-id="2">Редактировать</button>
-                            <button class="btn-details" data-plan-id="2">Подробнее</button>
-                            <button class="btn-close-plan" data-plan-id="2">Закрыть план</button>
-                            <button class="btn-analyze hidden" data-plan-id="2">Проанализировать</button>
+                            <button @onclick="@(() => RedirectToPage("edit-plan"))" class="btn-edit" data-plan-id="2">Редактировать</button>
+                            <button @onclick="@(() => RedirectToPage("plan-info"))" class="btn-details" data-plan-id="2">Подробнее</button>
+                            <button @onclick="@(() => RedirectToPage("home"))" class="btn-close-plan" data-plan-id="2">Закрыть план</button>
+                            <button @onclick="@(() => RedirectToPage("analythics"))" class="btn-analyze hidden" data-plan-id="2">Проанализировать</button>
                         </td>
                     </tr>
                 </tbody>
@@ -58,5 +59,8 @@
 </div>
 
 @code {
-
+    void RedirectToPage(string url)
+    {
+        Navigation.NavigateTo(url);
+    }
 }

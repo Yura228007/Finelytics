@@ -1,10 +1,10 @@
 ﻿@page "/transactions"
-<link href="css/components/General.css" rel="stylesheet" />
-<link href="css/components/add_transactions.css" rel="stylesheet" />
-<div id="add-transaction-page" class="page-container hidden">
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+<link href="app.css" rel="stylesheet" />
+<div id="add-transaction-page" >
         <div class="transaction-form-container">
             <h2 id="add-transaction-title">Добавить запись</h2> 
-            <form id="transaction-form">
                 <input type="hidden" id="transaction-plan-id"> 
 				<input type="hidden" id="transaction-category-id"> 
 
@@ -25,13 +25,19 @@
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn-primary">Сохранить</button>
-                    <button type="button" class="btn-secondary" id="cancel-transaction-btn">Отмена</button>
+                <button @onclick="@(() => RedirectToPage("transactions"))" class="btn-primary">Сохранить</button>
+                <button @onclick="@(() => RedirectToPage("home"))" class="btn-secondary" id="cancel-transaction-btn">Отмена</button>
                 </div>
-            </form>
         </div>
     </div>
 
 @code {
-
+    void RedirectToPage(string url)
+    {
+        Navigation.NavigateTo(url);
+    }
+    void RedirectAndSaveData()
+    {
+        //DB
+    }
 }

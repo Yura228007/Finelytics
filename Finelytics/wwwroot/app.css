@@ -1,0 +1,631 @@
+﻿
+/* Общие стили и переменные */
+:root {
+    --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
+    --secondary-color: #6c757d;
+    --secondary-hover-color: #5a6268;
+    --background-color: #f4f4f4;
+    --card-background: #ffffff;
+    --border-color: #ddd;
+    --text-color: #333;
+    --heading-color: #0056b3;
+    --error-color: #dc3545;
+    --success-color: #28a745;
+    --disabled-color: #ccc;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --border-radius: 5px;
+    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --transition-speed: 0.3s;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Класс для скрытия элементов */
+.hidden {
+    display: none !important;
+}
+
+.page-container {
+    width: 100%;
+    max-width: 960px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4 {
+    color: var(--heading-color);
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+h3 {
+    font-size: 1.3em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+/* Стили форм аутентификации (Login/Register) */
+
+.auth-form-container {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+    .auth-form-container h2 {
+        margin-bottom: 25px;
+    }
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: var(--text-color);
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group input[type="number"],
+    .form-group input[type="date"],
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        box-sizing: border-box;
+        font-size: 1em;
+        transition: border-color var(--transition-speed);
+    }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+        }
+
+/* Стили для кнопок */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color var(--transition-speed);
+    width: 100%;
+    margin-bottom: 10px; /* Отступ снизу */
+}
+
+    .btn-primary:hover {
+        background-color: var(--primary-hover-color);
+    }
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background-color var(--transition-speed);
+    text-decoration: none;
+    display: inline-block;
+}
+
+    .btn-secondary:hover {
+        background-color: var(--secondary-hover-color);
+    }
+
+.auth-switch {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: var(--secondary-color);
+}
+
+    .auth-switch a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        .auth-switch a:hover {
+            text-decoration: underline;
+        }
+
+/* Главное окно (Dashboard) */
+
+.main-header {
+    background-color: var(--card-background);
+    padding: 15px 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    display: flex; /* Используем Flexbox */
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.site-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-right: 20px;
+}
+
+.left-header-group {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-left: 20px;
+}
+
+.username {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.user-icon {
+    font-size: 1.5em;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 5px 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dashboard-content h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.plans-table-container {
+    background-color: var(--card-background);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    overflow-x: auto;
+}
+
+#plans-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    #plans-table th,
+    #plans-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    #plans-table th {
+        background-color: #f8f9fa; /* Светло-серый заголовок */
+        font-weight: bold;
+        color: var(--heading-color);
+    }
+
+    #plans-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+.plan-row:hover {
+    background-color: #f8f9fa;
+}
+
+.plan-title {
+    font-weight: bold;
+}
+
+.plan-date-range {
+    white-space: nowrap;
+}
+
+.plan-actions button {
+    padding: 8px 12px;
+    margin-right: 5px;
+    font-size: 0.85em;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color var(--transition-speed), opacity var(--transition-speed);
+}
+
+.btn-edit {
+    background-color: #ffc107;
+    color: #333;
+    border: none;
+}
+
+    .btn-edit:hover {
+        background-color: #e0a800;
+    }
+
+.btn-details {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+}
+
+    .btn-details:hover {
+        background-color: #138496;
+    }
+
+.btn-close-plan {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+}
+
+    .btn-close-plan:hover {
+        background-color: var(--secondary-hover-color);
+    }
+
+.btn-analyze {
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+}
+
+    .btn-analyze:hover {
+        background-color: #218838;
+    }
+
+.plan-actions .btn-analyze.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* Окно Формы Плана (Create/Edit Plan) */
+.plan-form-container {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+}
+
+#plan-form-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.date-range-picker .date-inputs {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+    .date-range-picker .date-inputs > div {
+        flex: 1;
+        min-width: 180px;
+    }
+
+.date-range-picker label {
+    margin-bottom: 8px;
+}
+
+/* Стили для полей выбора дат */
+.form-group input[type="date"] {
+    padding: 10px;
+}
+
+/* Стили для добавления категорий */
+#categories-list .category-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.category-item .category-inputs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.category-item select,
+.category-item input[type="text"],
+.category-item input[type="number"] {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 0.95em;
+}
+
+.category-item select {
+    flex-basis: 120px;
+}
+
+.category-item input[type="text"] {
+    flex-basis: 200px;
+    flex-grow: 1;
+}
+
+.category-item input[type="number"] {
+    flex-basis: 100px;
+}
+
+
+.btn-delete-category {
+    background-color: #dc3545; /* Красный */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color var(--transition-speed);
+    flex-shrink: 0;
+}
+
+    .btn-delete-category:hover {
+        background-color: #c82333;
+    }
+
+#add-category-btn {
+    margin-top: 10px;
+    width: auto;
+    display: block;
+    margin-left: auto;
+}
+
+.form-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Окно Подробностей Плана (Plan Details) */
+
+.plan-details-container {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+}
+
+    .plan-details-container h2 {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .plan-details-container p {
+        text-align: center;
+        color: var(--secondary-color);
+        margin-bottom: 30px;
+        font-size: 1.1em;
+    }
+
+#categories-details-list .category-detail-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-info {
+    flex: 1;
+}
+
+    .category-info .category-name {
+        font-weight: bold;
+        font-size: 1.1em;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .category-info span {
+        margin-right: 15px;
+        color: var(--text-color);
+    }
+
+    .category-info .category-spent {
+        color: var(--error-color);
+    }
+
+.btn-add-transaction {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color var(--transition-speed);
+}
+
+    .btn-add-transaction:hover {
+        background-color: var(--primary-hover-color);
+    }
+
+
+/* Окно Добавления Транзакции (Add Transaction) */
+
+.transaction-form-container {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    max-width: 500px;
+}
+
+#add-transaction-title {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.transaction-form-container .form-group {
+    margin-bottom: 15px;
+}
+
+.transaction-form-container textarea {
+    min-height: 80px;
+}
+
+
+/* Адаптивность */
+
+@media (max-width: 768px) {
+    .main-header {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .site-title {
+        margin-bottom: 15px;
+    }
+
+    .user-profile {
+        margin-top: 10px;
+    }
+
+    .auth-form-container,
+    .plan-form-container,
+    .transaction-form-container {
+        padding: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select,
+    .btn-primary {
+        font-size: 0.95em;
+    }
+
+    #plans-table {
+        font-size: 0.9em;
+    }
+
+        #plans-table th,
+        #plans-table td {
+            padding: 10px 12px;
+        }
+
+    .plan-actions button {
+        padding: 6px 10px;
+        font-size: 0.8em;
+    }
+
+    .date-range-picker .date-inputs {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .category-item .category-inputs,
+    #categories-details-list .category-detail-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .category-item select,
+    .category-item input[type="text"],
+    .category-item input[type="number"] {
+        width: 100%;
+        flex-basis: auto;
+    }
+
+    .btn-delete-category {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .auth-form-container,
+    .plan-form-container,
+    .transaction-form-container {
+        padding: 15px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select,
+    .btn-primary {
+        font-size: 0.9em;
+    }
+
+    .main-header {
+        padding: 10px;
+    }
+
+    .site-title {
+        font-size: 1.2em;
+    }
+
+    .user-icon {
+        font-size: 1.2em;
+        padding: 4px 7px;
+    }
+}

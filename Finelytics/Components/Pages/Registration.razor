@@ -1,10 +1,10 @@
 ﻿@page "/registration"
-<link href="css/components/General.css" rel="stylesheet" />
-<link href="css/components/authorization.css" rel="stylesheet"/>
-<div id="registration-page" class="page-container hidden">
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+<link href="app.css" rel="stylesheet" />
+<div id="registration-page">
     <div class="auth-form-container">
         <h2>Регистрация</h2>
-        <form action="/register" method="post" id="registration-form">
             <div class="form-group">
                 <label for="reg-name">Имя:</label>
                 <input type="text" id="reg-name" name="name" required>
@@ -17,15 +17,17 @@
                 <label for="reg-password">Пароль:</label>
                 <input type="password" id="reg-password" name="password" required>
             </div>
-            <button type="submit" class="btn-primary">Зарегистрироваться</button>
-        </form>
+        <button @onclick="@(() => RedirectToPage(""))" class="btn-primary">Зарегистрироваться</button>
         <div class="auth-switch">
             <p>Уже есть аккаунт?</p>
-            <a href="#login" class="btn-secondary">Войти</a>
+            <a @onclick="@(() => RedirectToPage(""))" class="btn-secondary">Войти</a>
         </div>
     </div>
 </div>
 
 @code {
-
+    void RedirectToPage(string url)
+    {
+        Navigation.NavigateTo(url);
+    }
 }

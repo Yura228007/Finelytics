@@ -1,7 +1,7 @@
-using Finelytics.Models;
+using finelytics.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Finelytics.Domain
+namespace finelytics.Domain
 {
     public class AppDbContext : DbContext
     {

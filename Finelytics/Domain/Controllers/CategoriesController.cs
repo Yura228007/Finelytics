@@ -1,8 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
-using Finelytics.Models;
-namespace Finelytics.Domain.Controllers
+using finelytics.Models;
+namespace finelytics.Domain.Controllers
 {
-    public class CategoriesController : Controller
+    public interface ICategoriesController
+    {
+        public Task<IActionResult> Create(Category category, string pagePath);
+        public Task<IActionResult> Update(Category category, string pagePath);
+        public Task<IActionResult> Delete(Category category, string pagePath);
+        public List<Category> Read();
+    }
+
+    public class CategoriesController : Controller, ICategoriesController
     {
         private readonly AppDbContext _context;
         public CategoriesController(AppDbContext context)

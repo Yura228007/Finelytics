@@ -1,12 +1,10 @@
 @page "/"
-
-<link href="css/components/General.css" rel="stylesheet" />
-<link href="css/components/authorization.css" rel="stylesheet" />
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+<link href="app.css" rel="stylesheet" />
 <div id="login-page">
     <div class="auth-form-container">
         <h2>???? ? ???????</h2>
-        <form action="/home" method="post" id="login-form">
-            
             <div class="form-group">
                 <label for="login-username">?????:</label>
                 <input value="user.Email" type="text" id="login-username" name="username" required>
@@ -15,14 +13,28 @@
                 <label for="login-password">??????:</label>
                 <input value="user.Password" type="password" id="login-password" name="password" required>
             </div>
-            <button type="submit" class="btn-primary">?????</button>
-        </form>
+            <button @onclick="@(() => RedirectToPage("home"))" class="btn-primary">a</button>
         <div class="auth-switch">
             <p>??? ?????????</p>
-            <a href="/registration" class="btn-secondary">??????????????????</a>
+            <button @onclick="@(() => RedirectToPage("registration"))" class="btn-secondary">??????????????????</button>
         </div>
     </div>
 </div>
+<h1>@foo()</h1>
 @code {
-    
+    private ICategoriesController icc;
+    void RedirectToPage(string url)
+    {
+        Navigation.NavigateTo(url);
+    }
+    string foo()
+    {
+        string s = "";
+        List<Category> categories = icc.Read();
+        foreach(Category category in categories)
+        {
+            s += category.Name + "\n";
+        }
+        return s;
+    }
 }

@@ -1,10 +1,10 @@
 ﻿@page "/create-plan"
-<link href="css/components/General.css" rel="stylesheet" />
-<link href="css/components/create_plan.css" rel="stylesheet"/>
-<div id="plan-form-page" class="page-container hidden">
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+<link href="app.css" rel="stylesheet" />
+<div id="plan-form-page">
     <div class="plan-form-container">
         <h2 id="plan-form-title">Создать план</h2>
-        <form id="plan-form">
             <input type="hidden" id="plan-id" name="planId">
 
             <div class="form-group">
@@ -45,13 +45,15 @@
             <button type="button" id="add-category-btn" class="btn-secondary">Добавить категорию</button>
 
             <div class="form-actions">
-                <button type="submit" class="btn-primary" id="save-plan-btn">Создать</button>
-                <button type="button" class="btn-secondary" id="cancel-plan-form-btn">Отмена</button>
+                <button @onclick="@(() => RedirectToPage("create-plan"))" class="btn-primary" id="save-plan-btn">Создать</button>
+                <button @onclick="@(() => RedirectToPage("home"))" class="btn-secondary" id="cancel-plan-form-btn">Отмена</button>
             </div>
-        </form>
     </div>
 </div>
 
 @code {
-
+    void RedirectToPage(string url)
+    {
+        Navigation.NavigateTo(url);
+    }
 }

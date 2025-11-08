@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Finelytics\\Finelytics\\Finelytics\\Finelytics.csproj": {}
+    "C:\\Users\\Yar.DESKTOP-MSB8Q41\\source\\repos\\finelytics\\finelytics\\finelytics.csproj": {}
   },
   "projects": {
-    "C:\\Finelytics\\Finelytics\\Finelytics\\Finelytics.csproj": {
+    "C:\\Users\\Yar.DESKTOP-MSB8Q41\\source\\repos\\finelytics\\finelytics\\finelytics.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Finelytics\\Finelytics\\Finelytics\\Finelytics.csproj",
-        "projectName": "Finelytics",
-        "projectPath": "C:\\Finelytics\\Finelytics\\Finelytics\\Finelytics.csproj",
-        "packagesPath": "C:\\Users\\iurii\\.nuget\\packages\\",
-        "outputPath": "C:\\Finelytics\\Finelytics\\Finelytics\\obj\\",
+        "projectUniqueName": "C:\\Users\\Yar.DESKTOP-MSB8Q41\\source\\repos\\finelytics\\finelytics\\finelytics.csproj",
+        "projectName": "finelytics",
+        "projectPath": "C:\\Users\\Yar.DESKTOP-MSB8Q41\\source\\repos\\finelytics\\finelytics\\finelytics.csproj",
+        "packagesPath": "C:\\Users\\Yar.DESKTOP-MSB8Q41\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Yar.DESKTOP-MSB8Q41\\source\\repos\\finelytics\\finelytics\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\iurii\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Yar.DESKTOP-MSB8Q41\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -51,35 +50,13 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "ChartJs.Blazor": {
-              "target": "Package",
-              "version": "[1.1.0, )"
-            },
-            "ChartJs.Blazor.Fork": {
-              "target": "Package",
-              "version": "[2.0.2, )"
-            },
-            "Microsoft.AspNet.Mvc": {
-              "target": "Package",
-              "version": "[5.3.0, )"
-            },
             "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[9.0.10, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[9.0.10, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.4, )"
             }
           },
           "imports": [
@@ -101,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -10,12 +10,8 @@
 	<script src="~/js/chartJsInterop.js"></script>
 </head>
 <body>
-	<script src="_framework/blazor.server.js"></script>
-	<Router AppAssembly="@typeof(Program).Assembly">
-		<Found Context="routeData">
-			<RouteView RouteData="routeData" />
-		</Found>
-	</Router>
+	<Routes />
+	<script src="_framework/blazor.web.js"></script>
 </body>
 </html>
 

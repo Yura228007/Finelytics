@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Finelytics.Models
+namespace finelytics.Models
 {
     public class User
     {

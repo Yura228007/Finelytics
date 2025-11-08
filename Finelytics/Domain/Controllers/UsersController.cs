@@ -1,9 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
-using Finelytics.Models;
+using finelytics.Models;
 
-namespace Finelytics.Domain.Controllers
+namespace finelytics.Domain.Controllers
 {
-    public class UsersController : Controller
+    public interface IUsersController
+    {
+        public Task<IActionResult> Create(User user, string pagePath);
+        public Task<IActionResult> Update(User user, string pagePath);
+        public Task<IActionResult> Delete(User user, string pagePath);
+        public List<User> Read();
+    }
+    public class UsersController : Controller, IUsersController
     {
         private readonly AppDbContext _context;
         public UsersController(AppDbContext context)

@@ -1,8 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
-using Finelytics.Models;
-namespace Finelytics.Domain.Controllers
+using finelytics.Models;
+namespace finelytics.Domain.Controllers
 {
-    public class TransactionsController : Controller
+    public interface ITransactionsController
+    {
+        public Task<IActionResult> Create(Transaction transaction, string pagePath);
+        public Task<IActionResult> Update(Transaction transaction, string pagePath);
+        public Task<IActionResult> Delete(Transaction transaction, string pagePath);
+        public List<Transaction> Read();
+    }
+    public class TransactionsController : Controller, ITransactionsController
     {
         private readonly AppDbContext _context;
         public TransactionsController(AppDbContext context)

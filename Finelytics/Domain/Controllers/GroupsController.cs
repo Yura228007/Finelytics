@@ -1,8 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Finelytics.Models;
-namespace Finelytics.Domain.Controllers
+using finelytics.Models;
+namespace finelytics.Domain.Controllers
 {
-    public class GroupsController : Controller
+    public interface IGroupsController
+    {
+        public Task<IActionResult> Create(Group group, string pagePath);
+        public Task<IActionResult> Update(Group group, string pagePath);
+        public Task<IActionResult> Delete(Group group, string pagePath);
+        public List<Group> Read();
+    }
+    public class GroupsController : Controller, IGroupsController
     {
         private readonly AppDbContext _context;
         public GroupsController(AppDbContext context)

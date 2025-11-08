@@ -1,7 +1,8 @@
 ﻿@page "/plan-info"
-<link href="css/components/General.css" rel="stylesheet" />
-<link href="css/components/plan_info.css" rel="stylesheet" />
-<div id="plan-details-page" class="page-container hidden">
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+<link href="app.css" rel="stylesheet" />
+<div id="plan-details-page">
     <div class="plan-details-container">
         <h2 id="details-plan-title"></h2>
         <p id="details-plan-dates"></p>
@@ -17,10 +18,13 @@
                 <button class="btn-add-transaction" data-category-id="1">Добавить запись</button>
             </div>
         </div>
-        <button type="button" class="btn-secondary" id="back-to-main-btn">Назад</button>
+        <button @onclick="@(() => RedirectToPage("home"))" class="btn-secondary" id="back-to-main-btn">Назад</button>
     </div>
 </div>
 
 @code {
-
+    void RedirectToPage(string url)
+    {
+        Navigation.NavigateTo(url);
+    }
 }
