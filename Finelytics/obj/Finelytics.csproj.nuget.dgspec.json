@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Yar.DESKTOP-MSB8Q41\\source\\repos\\finelytics\\finelytics\\finelytics.csproj": {}
+    "C:\\Finelytics\\Finelytics\\finelytics\\finelytics.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Yar.DESKTOP-MSB8Q41\\source\\repos\\finelytics\\finelytics\\finelytics.csproj": {
+    "C:\\Finelytics\\Finelytics\\finelytics\\finelytics.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Yar.DESKTOP-MSB8Q41\\source\\repos\\finelytics\\finelytics\\finelytics.csproj",
+        "projectUniqueName": "C:\\Finelytics\\Finelytics\\finelytics\\finelytics.csproj",
         "projectName": "finelytics",
-        "projectPath": "C:\\Users\\Yar.DESKTOP-MSB8Q41\\source\\repos\\finelytics\\finelytics\\finelytics.csproj",
-        "packagesPath": "C:\\Users\\Yar.DESKTOP-MSB8Q41\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Yar.DESKTOP-MSB8Q41\\source\\repos\\finelytics\\finelytics\\obj\\",
+        "projectPath": "C:\\Finelytics\\Finelytics\\finelytics\\finelytics.csproj",
+        "packagesPath": "C:\\Users\\iurii\\.nuget\\packages\\",
+        "outputPath": "C:\\Finelytics\\Finelytics\\finelytics\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Yar.DESKTOP-MSB8Q41\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\iurii\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -54,7 +55,19 @@
               "target": "Package",
               "version": "[9.0.10, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.10, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.10, )"
             }
@@ -78,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

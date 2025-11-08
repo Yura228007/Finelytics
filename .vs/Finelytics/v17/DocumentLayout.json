@@ -1,12 +1,326 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Finelytics\\Finelytics\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\migrations\\20251108145653_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\migrations\\20251108145653_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\models\\usersgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\models\\usersgroup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\models\\userplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\models\\userplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\models\\plancategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\models\\plancategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\models\\plan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\models\\plan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\models\\group.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\domain\\app_dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\domain\\app_dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\classes\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\classes\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\finelytics\\finelytics\\finelytics\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Plan.cs",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\Plan.cs",
+              "RelativeDocumentMoniker": "Finelytics\\Models\\Plan.cs",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\Plan.cs",
+              "RelativeToolTip": "Finelytics\\Models\\Plan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:41:57.512Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Group.cs",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\Group.cs",
+              "RelativeDocumentMoniker": "Finelytics\\Models\\Group.cs",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\Group.cs",
+              "RelativeToolTip": "Finelytics\\Models\\Group.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:41:56.641Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Category.cs",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\Category.cs",
+              "RelativeDocumentMoniker": "Finelytics\\Models\\Category.cs",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\Category.cs",
+              "RelativeToolTip": "Finelytics\\Models\\Category.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:41:53.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_Imports.razor",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Components\\_Imports.razor",
+              "RelativeDocumentMoniker": "Finelytics\\Components\\_Imports.razor",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Components\\_Imports.razor",
+              "RelativeToolTip": "Finelytics\\Components\\_Imports.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-08T14:41:32.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Finelytics\\Models\\User.cs",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\User.cs",
+              "RelativeToolTip": "Finelytics\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:42:01.706Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserPlan.cs",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\UserPlan.cs",
+              "RelativeDocumentMoniker": "Finelytics\\Models\\UserPlan.cs",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\UserPlan.cs",
+              "RelativeToolTip": "Finelytics\\Models\\UserPlan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:42:02.676Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UsersGroup.cs",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\UsersGroup.cs",
+              "RelativeDocumentMoniker": "Finelytics\\Models\\UsersGroup.cs",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\UsersGroup.cs",
+              "RelativeToolTip": "Finelytics\\Models\\UsersGroup.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:42:03.779Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Components\\App.razor",
+              "RelativeDocumentMoniker": "Finelytics\\Components\\App.razor",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Components\\App.razor",
+              "RelativeToolTip": "Finelytics\\Components\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-08T14:41:41.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LogIn.razor",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Components\\Pages\\LogIn.razor",
+              "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\LogIn.razor",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Components\\Pages\\LogIn.razor",
+              "RelativeToolTip": "Finelytics\\Components\\Pages\\LogIn.razor",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACAAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-08T14:42:28.584Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "20251108145653_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Migrations\\20251108145653_InitialCreate.cs",
+              "RelativeDocumentMoniker": "Finelytics\\Migrations\\20251108145653_InitialCreate.cs",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Migrations\\20251108145653_InitialCreate.cs",
+              "RelativeToolTip": "Finelytics\\Migrations\\20251108145653_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:56:53.548Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Program.cs",
+              "RelativeDocumentMoniker": "Finelytics\\Program.cs",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Program.cs",
+              "RelativeToolTip": "Finelytics\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:42:06.338Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Routes.razor",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Components\\Routes.razor",
+              "RelativeDocumentMoniker": "Finelytics\\Components\\Routes.razor",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Components\\Routes.razor",
+              "RelativeToolTip": "Finelytics\\Components\\Routes.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-08T14:41:43.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PlanCategory.cs",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\PlanCategory.cs",
+              "RelativeDocumentMoniker": "Finelytics\\Models\\PlanCategory.cs",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\PlanCategory.cs",
+              "RelativeToolTip": "Finelytics\\Models\\PlanCategory.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:41:58.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Transaction.cs",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\Transaction.cs",
+              "RelativeDocumentMoniker": "Finelytics\\Models\\Transaction.cs",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Models\\Transaction.cs",
+              "RelativeToolTip": "Finelytics\\Models\\Transaction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:41:59.952Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\appsettings.json",
+              "RelativeDocumentMoniker": "Finelytics\\appsettings.json",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\appsettings.json",
+              "RelativeToolTip": "Finelytics\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-08T14:32:34.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "App_DbContext.cs",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Domain\\App_DbContext.cs",
+              "RelativeDocumentMoniker": "Finelytics\\Domain\\App_DbContext.cs",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Domain\\App_DbContext.cs",
+              "RelativeToolTip": "Finelytics\\Domain\\App_DbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:32:29.876Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\Classes\\User.cs",
+              "RelativeDocumentMoniker": "Finelytics\\Classes\\User.cs",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\Classes\\User.cs",
+              "RelativeToolTip": "Finelytics\\Classes\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:30:12.617Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "app.css",
+              "DocumentMoniker": "C:\\Finelytics\\Finelytics\\Finelytics\\wwwroot\\app.css",
+              "RelativeDocumentMoniker": "Finelytics\\wwwroot\\app.css",
+              "ToolTip": "C:\\Finelytics\\Finelytics\\Finelytics\\wwwroot\\app.css",
+              "RelativeToolTip": "Finelytics\\wwwroot\\app.css",
+              "ViewState": "AgIAAD0CAAAAAAAAAAAQwF8CAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-11-08T14:29:05.333Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

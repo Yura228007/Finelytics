@@ -1,6 +1,6 @@
-using finelytics.Components;
 using finelytics.Domain;
 using finelytics.Domain.Controllers;
+using finelytics.Components;
 using Microsoft.EntityFrameworkCore;
 internal class Program
 {
