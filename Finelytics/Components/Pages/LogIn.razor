@@ -1,13 +1,14 @@
 @page "/"
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
+@inject HttpClient Http
 <link href="app.css" rel="stylesheet" />
 <div id="login-page">
     <div class="auth-form-container">
         <h2>???? ? ???????</h2>
             <div class="form-group">
                 <label for="login-username">?????:</label>
-                <input value="user.Email" type="text" id="login-username" name="username" required>
+                <input value="user.Login" type="text" id="login-username" name="username" required>
             </div>
             <div class="form-group">
                 <label for="login-password">??????:</label>
@@ -20,21 +21,27 @@
         </div>
     </div>
 </div>
-<h1>@foo()</h1>
+<h1>@categoriesText</h1>
+
 @code {
-    private ICategoriesController icc;
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
     }
-    string foo()
+    private string categoriesText = "";
+    
+    protected override async Task OnInitializedAsync()
     {
-        string s = "";
-        List<Category> categories = icc.Read();
-        foreach(Category category in categories)
-        {
-            s += category.Name + "\n";
-        }
-        return s;
+        await LoadCategoriesAsync();
     }
+
+    private async Task LoadCategoriesAsync()
+    {
+        var categories = await Http.GetFromJsonAsync<List<Category>>("http://localhost:5169/api/Categories");
+        if (categories is not null)
+        {
+            categoriesText = string.Join(", ", categories.Select(c => c.Name));
+        }
+    }
+
 }

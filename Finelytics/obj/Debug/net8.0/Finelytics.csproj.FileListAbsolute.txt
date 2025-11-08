@@ -251,3 +251,8 @@ C:\Finelytics\Finelytics\finelytics\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.W
 C:\Finelytics\Finelytics\finelytics\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Finelytics\Finelytics\finelytics\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Finelytics\Finelytics\finelytics\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Finelytics\Finelytics\finelytics\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\Finelytics\Finelytics\finelytics\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Finelytics\Finelytics\finelytics\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Finelytics\Finelytics\finelytics\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Finelytics\Finelytics\finelytics\obj\Debug\net8.0\finelytics.MvcApplicationPartsAssemblyInfo.cs

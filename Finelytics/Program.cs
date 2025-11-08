@@ -12,7 +12,9 @@ internal class Program
         builder.Services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
         builder.Services.AddControllersWithViews();
-        builder.Services.AddScoped<ICategoriesController, CategoriesController>();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+        //builder.Services.AddScoped<ICategoriesController, CategoriesController>();
         builder.Services.AddScoped<IGroupsController,GroupsController>();
         builder.Services.AddScoped<IPlansController, PlansController>();
         builder.Services.AddScoped<IPlansCategoriesController, PlansCategoriesController>();
@@ -20,16 +22,25 @@ internal class Program
         builder.Services.AddScoped<IUsersController, UsersController>();
         builder.Services.AddScoped<IUsersGroupsController, UsersGroupsController>();
         builder.Services.AddScoped<IUsersPlansController, UsersPlansController>();
+        builder.Services.AddHttpClient();
         var app = builder.Build();
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+        
         if (!app.Environment.IsDevelopment())
         {
             app.UseExceptionHandler("/Error", createScopeForErrors: true);
         }
-            app.UseAntiforgery();
-            app.UseStaticFiles();
-            app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
-            app.MapDefaultControllerRoute();
-            app.Run();
+
+        app.UseAntiforgery();
+        app.UseStaticFiles();
+        app.MapControllers();
+        app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
+        app.MapDefaultControllerRoute();
+        app.Run();
         }
 }
 
