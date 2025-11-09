@@ -1,23 +1,24 @@
 ﻿@page "/registration"
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
+@inject HttpClient Http
 <link href="app.css" rel="stylesheet" />
 <div id="registration-page">
     <div class="auth-form-container">
         <h2>Регистрация</h2>
             <div class="form-group">
                 <label for="reg-name">Имя:</label>
-                <input type="text" id="reg-name" name="name" required>
+                <input @bind-value="user.Nickname" type="text" id="reg-name" name="name" required>
             </div>
             <div class="form-group">
                 <label for="reg-username">Логин:</label>
-                <input type="text" id="reg-username" name="username" required>
+                <input @bind-value="user.Login" type="text" id="reg-username" name="username" required>
             </div>
             <div class="form-group">
                 <label for="reg-password">Пароль:</label>
-                <input type="password" id="reg-password" name="password" required>
+                <input @bind-value="user.Password"  type="password" id="reg-password" name="password" required>
             </div>
-        <button @onclick="@(() => RedirectToPage(""))" class="btn-primary">Зарегистрироваться</button>
+        <button @onclick="@(() => Registration())" class="btn-primary">Зарегистрироваться</button>
         <div class="auth-switch">
             <p>Уже есть аккаунт?</p>
             <a @onclick="@(() => RedirectToPage(""))" class="btn-secondary">Войти</a>
@@ -26,8 +27,18 @@
 </div>
 
 @code {
+    User user = new User();
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
+    }
+    public async Task Registration(){
+        if(!string.IsNullorEmpty(user.Login) && !string.IsNullOrEmpty(user.Password) && !string.IsNullOrEmpty(user.Nickname)){
+            var response = await Http.PostAsJsonAsync("api/users",user);
+            Navigation.NavigateTo("")
+        }
+        else{
+            Navigation.NavigateTo("registration")
+        }
     }
 }
