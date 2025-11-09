@@ -1,6 +1,7 @@
 ﻿@page "/transactions"
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
+@inject HttpClient Http
 <link href="app.css" rel="stylesheet" />
 <div id="add-transaction-page" >
         <div class="transaction-form-container">
@@ -9,35 +10,38 @@
 				<input type="hidden" id="transaction-category-id"> 
 
                 <div class="form-group">
-                    <label for="transaction-type">Тип:</label>
-                    <select id="transaction-type" name="transactionType" class="category-type" required>
-                        <option value="expense">Расход</option>
-                        <option value="income">Доход</option>
-                    </select>
-                </div>
-                <div class="form-group">
                     <label for="transaction-amount">Сумма:</label>
-                    <input type="number" id="transaction-amount" name="transactionAmount" placeholder="0.00" required>
+                    <input @bind-value="transaction.PlannedAmmount" type="number" id="transaction-amount" name="transactionAmount" placeholder="0.00" required>
                 </div>
                 <div class="form-group">
                     <label for="transaction-comment">Комментарий:</label>
-                    <textarea id="transaction-comment" name="transactionComment" rows="3" placeholder="Например: Покупка продуктов"></textarea>
+                    <textarea @bind-value="transaction.Comment" id="transaction-comment" name="transactionComment" rows="3" placeholder="Например: Покупка продуктов"></textarea>
                 </div>
 
                 <div class="form-actions">
-                <button @onclick="@(() => RedirectToPage("transactions"))" class="btn-primary">Сохранить</button>
+                <button @onclick="@(() => AddTransaction())" class="btn-primary">Сохранить</button>
                 <button @onclick="@(() => RedirectToPage("home"))" class="btn-secondary" id="cancel-transaction-btn">Отмена</button>
                 </div>
         </div>
     </div>
 
 @code {
+	[Parameter]
+	[SupplyParameterFromQuery(Name="id")]
+	public int Id {get;set;} = -1
+
+	public Transaction transaction {get;set;} = new Transaction();
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
     }
-    void RedirectAndSaveData()
+    public async Task AddTransaction()
     {
-        //DB
+		if(!string.IsNullOrEmpty(transaction.Comment) && transaction.PlannedAmmount != 0){
+			transaction.PlanId = Id;
+			// доделать, нужно чтобы был выбор категорий и у поля транзакции был ее id
+			await Http.PostAsJsonAsync("api/transactions",transaction);
+			Navigation.NavigateTo("transactions")
+		}
     }
 }
