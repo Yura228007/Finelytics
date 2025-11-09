@@ -1,17 +1,18 @@
 ﻿@page "/home"  
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
+@inject HttpClient Http
 <link href="app.css" rel="stylesheet" />
 <div id="main-page">
     <header class="main-header">
         <!-- Группируем название сайта и кнопку -->
         <div class="left-header-group">
             <div class="site-title">Планировщик расходов</div>
-            <button @onclick="@(() => RedirectToPage("create-plan"))" id="create-plan-btn" class="btn-primary switch-page-link">Создать план</button>
+            <button @onclick="@(() => RedirectToPage($"create-plan?id={user.Id}"))" id="create-plan-btn" class="btn-primary switch-page-link">Создать план</button>
         </div>
 
         <div class="user-profile">
-            <span class="username">Пользователь</span>
+            <span class="username">@(user.Nickname)</span>
             <span class="user-icon">👤</span>
         </div>
     </header>
@@ -29,29 +30,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="plan-row" data-plan-id="1">
-                        <td class="plan-title">Месяц на еду</td>
-                        <td class="plan-date-range">01.11.2023 - 30.11.2023</td>
-                        <td class="plan-status">Активен</td>
+                    @foreach(Plan p in plans){
+                         <tr class="plan-row" data-plan-id="@p.Id">
+                        <td class="plan-title">@p.Name</td>
+                        <td class="plan-date-range">@p.StartDate.ToString("dd.mm.yyyy") - @p.EndDate.ToString("dd.mm.yyyy")</td>
+                        <td class="plan-status">@GetStringFormEnablePlan(p)</td>
                         <td class="plan-actions">
-                            <button @onclick="@(() => RedirectToPage("edit-plan"))" class="btn-edit" data-plan-id="1">Редактировать</button>
-                            <button @onclick="@(() => RedirectToPage("plan-info"))" class="btn-details" data-plan-id="1">Подробнее</button>
+                            <button @onclick="@(() => RedirectToPage($"edit-plan?id={p.Id}"))" class="btn-edit" data-plan-id="1">Редактировать</button>
+                            <button @onclick="@(() => RedirectToPage($"plan-info?id={p.Id}"))" class="btn-details" data-plan-id="1">Подробнее</button>
                             <button @onclick="@(() => RedirectToPage("home"))" class="btn-close-plan" data-plan-id="1">Закрыть план</button>
-                            <button @onclick="@(() => RedirectToPage("analythics"))" class="btn-analyze hidden" data-plan-id="1">Проанализировать</button>
+                            <button @onclick="@(() => RedirectToPage($"analythics?id={p.Id}"))" class="btn-analyze hidden" data-plan-id="1">Проанализировать</button>
                         </td>
                     </tr>
-                    <!-- Еще один пример -->
-                    <tr class="plan-row" data-plan-id="2">
-                        <td class="plan-title">Отпуск 2024</td>
-                        <td class="plan-date-range">01.07.2024 - 15.07.2024</td>
-                        <td class="plan-status">Активен</td>
-                        <td class="plan-actions">
-                            <button @onclick="@(() => RedirectToPage("edit-plan"))" class="btn-edit" data-plan-id="2">Редактировать</button>
-                            <button @onclick="@(() => RedirectToPage("plan-info"))" class="btn-details" data-plan-id="2">Подробнее</button>
-                            <button @onclick="@(() => RedirectToPage("home"))" class="btn-close-plan" data-plan-id="2">Закрыть план</button>
-                            <button @onclick="@(() => RedirectToPage("analythics"))" class="btn-analyze hidden" data-plan-id="2">Проанализировать</button>
-                        </td>
-                    </tr>
+                    }
                 </tbody>
             </table>
         </div>
@@ -62,8 +53,32 @@
     [Parameter]
     [SupplyParameterFromQuery(Name="id")]
     public int Id {get; set;} = -1
+    public User user {get; set;} = new User()
+    public List<Plan> plans {get; set;} = new List<Plan>()
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
     }
+    protected override async Task OnParametersSetAsync(){
+        await LoadData();
+    }
+    public async Task LoadData(){
+        user = await Http.GetFromJsonAsync<User>($"/api/users/{Id}");
+        List<UserPlan> userPlans = await Http.GetFromJsonAsync<List<UserPlan>>("api/usersplans");
+        foreach(UserPlan up in userPlans){
+            if(up.UserId == user.Id){
+                Plan plan = Http.GetFromJsonAsync<Plan>($"api/plans/{up.PlanId}");
+                    plans.Add(plan);
+            }
+        }
+    }
+    public string GetStringFormEnablePlan(Plan plan){
+        if(plan.Enable){
+            return "Активен";
+        }
+        else{
+            return "Неактивен";
+        }
+    }
+
 }
