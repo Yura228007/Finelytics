@@ -1,4 +1,4 @@
-﻿@page "/plan-info"
+@page "/plan-info"
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 <link href="app.css" rel="stylesheet" />
@@ -11,9 +11,12 @@
         <div id="categories-details-list">
             <div class="category-detail-item">
                 <div class="category-info">
-                    <span class="category-name">Еда</span>
-                    <span class="category-budget">Бюджет: 15000 руб.</span>
-                    <span class="category-spent">Потрачено: 12000 руб.</span>
+                    <label class="category-name" for="plan-name">Название плана:</label>
+                    <label class="category-name" type="date" id="plan-id" name="planId" required> </label>
+                    <label class="category-budget" for="plan-budget">Бюджет:</label>
+                    <label class="category-budget" type="date" id="plan-budget" name="planBudget" required></label>
+                    <label class="category-spent" for="plan-spent">Потрачено:</label>
+                    <label class="category-spent" type="date" id="plan-spent" name="planSpent" required></label>
                 </div>
                 <button class="btn-add-transaction" data-category-id="1">Добавить запись</button>
             </div>
