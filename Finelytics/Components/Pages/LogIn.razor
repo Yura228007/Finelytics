@@ -34,10 +34,10 @@
     {
         await Task.Delay(1);
     }
-    public void Login()
+    public async Task Login()
     {
         if(!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password){
-            List<User> users = Http.GetFromJsonAsync<List<User>>("api/users")    
+            List<User> users = await Http.GetFromJsonAsync<List<User>>("api/users")    
             foreach(User u in users){
                 if(login == u.Login && password == u.Password){
                     Navigation.NavigateTo("home")
