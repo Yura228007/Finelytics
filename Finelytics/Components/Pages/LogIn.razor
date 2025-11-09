@@ -40,7 +40,7 @@
             List<User> users = await Http.GetFromJsonAsync<List<User>>("api/users")    
             foreach(User u in users){
                 if(login == u.Login && password == u.Password){
-                    Navigation.NavigateTo("home")
+                    Navigation.NavigateTo($"home?id={u.Id}")
                 }
             }
         }
