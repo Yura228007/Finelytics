@@ -1,47 +1,70 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using finelytics.Models;
-namespace finelytics.Domain.Controllers
+using finelytics.Domain;
+
+namespace finelytics.Api.Controllers
 {
-    public interface IGroupsController
-    {
-        public Task<IActionResult> Create(Group group, string pagePath);
-        public Task<IActionResult> Update(Group group, string pagePath);
-        public Task<IActionResult> Delete(Group group, string pagePath);
-        public List<Group> Read();
-    }
-    public class GroupsController : Controller, IGroupsController
+    [ApiController]
+    [Route("api/[controller]")]
+    public class GroupsController : ControllerBase
     {
         private readonly AppDbContext _context;
+
         public GroupsController(AppDbContext context)
         {
             _context = context;
         }
-        public async Task<IActionResult> Create(Group group, string pagePath)
+
+        // GET: api/groups
+        [HttpGet]
+        public async Task<ActionResult<List<Group>>> GetGroups(CancellationToken cancellationToken = default)
         {
-            _context.Groups.Add(group);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(pagePath);
+            return await _context.Groups.ToListAsync(cancellationToken);
         }
-        public async Task<IActionResult> Update(Group group, string pagePath)
+
+        // GET: api/groups/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Group>> GetGroup(int id, CancellationToken cancellationToken = default)
         {
-            _context.Groups.Update(group);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(pagePath);
+            var group = await _context.Groups.FindAsync([id], cancellationToken);
+            if (group == null)
+                return NotFound();
+            return group;
         }
-        public async Task<IActionResult> Delete(Group group, string pagePath)
+
+        // POST: api/groups
+        [HttpPost]
+        public async Task<ActionResult<Group>> CreateGroup(Group group, CancellationToken cancellationToken = default)
         {
+            await _context.Groups.AddAsync(group, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+            return CreatedAtAction(nameof(GetGroup), new { id = group.Id }, group);
+        }
+
+        // PUT: api/groups/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateGroup(int id, Group group, CancellationToken cancellationToken = default)
+        {
+            if (id != group.Id)
+                return BadRequest();
+
+            _context.Entry(group).State = EntityState.Modified;
+            await _context.SaveChangesAsync(cancellationToken);
+            return NoContent();
+        }
+
+        // DELETE: api/groups/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteGroup(int id, CancellationToken cancellationToken = default)
+        {
+            var group = await _context.Groups.FindAsync([id], cancellationToken);
+            if (group == null)
+                return NotFound();
+
             _context.Groups.Remove(group);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(pagePath);
-        }
-        public List<Group> Read()
-        {
-            List<Group> groups = new List<Group>();
-            foreach (Group g in _context.Groups)
-            {
-                groups.Add(g);
-            }
-            return groups;
+            await _context.SaveChangesAsync(cancellationToken);
+            return NoContent();
         }
     }
 }

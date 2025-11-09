@@ -1,5 +1,4 @@
 using finelytics.Domain;
-using finelytics.Domain.Controllers;
 using finelytics.Components;
 using Microsoft.EntityFrameworkCore;
 internal class Program
@@ -15,13 +14,13 @@ internal class Program
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
         //builder.Services.AddScoped<ICategoriesController, CategoriesController>();
-        builder.Services.AddScoped<IGroupsController,GroupsController>();
-        builder.Services.AddScoped<IPlansController, PlansController>();
-        builder.Services.AddScoped<IPlansCategoriesController, PlansCategoriesController>();
-        builder.Services.AddScoped<ITransactionsController, TransactionsController>();
-        builder.Services.AddScoped<IUsersController, UsersController>();
-        builder.Services.AddScoped<IUsersGroupsController, UsersGroupsController>();
-        builder.Services.AddScoped<IUsersPlansController, UsersPlansController>();
+        //builder.Services.AddScoped<IGroupsController,GroupsController>();
+        //builder.Services.AddScoped<IPlansController, PlansController>();
+        //builder.Services.AddScoped<IPlansCategoriesController, PlansCategoriesController>();
+        //builder.Services.AddScoped<ITransactionsController, TransactionsController>();
+        //builder.Services.AddScoped<IUsersController, UsersController>();
+        //builder.Services.AddScoped<IUsersGroupsController, UsersGroupsController>();
+        //builder.Services.AddScoped<IUsersPlansController, UsersPlansController>();
         builder.Services.AddHttpClient();
         var app = builder.Build();
         if (app.Environment.IsDevelopment())

@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace finelytics.Models
@@ -9,7 +9,6 @@ namespace finelytics.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(50)]
         [DisplayName("Period")]
         public DateTime Period { get; set; }
 

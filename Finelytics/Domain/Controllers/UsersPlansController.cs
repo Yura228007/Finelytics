@@ -1,47 +1,70 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using finelytics.Models;
-namespace finelytics.Domain.Controllers
+using finelytics.Domain;
+
+namespace finelytics.Api.Controllers
 {
-    public interface IUsersPlansController
-    {
-        public Task<IActionResult> Create(UserPlan usersGroup, string pagePath);
-        public Task<IActionResult> Update(UserPlan usersGroup, string pagePath);
-        public Task<IActionResult> Delete(UserPlan usersGroup, string pagePath);
-        public List<UserPlan> Read();
-    }
-    public class UsersPlansController : Controller, IUsersPlansController
+    [ApiController]
+    [Route("api/[controller]")]
+    public class UsersPlansController : ControllerBase
     {
         private readonly AppDbContext _context;
+
         public UsersPlansController(AppDbContext context)
         {
             _context = context;
         }
-        public async Task<IActionResult> Create(UserPlan userPlan, string pagePath)
+
+        // GET: api/usersplans
+        [HttpGet]
+        public async Task<ActionResult<List<UserPlan>>> GetUsersPlans(CancellationToken cancellationToken = default)
         {
-            _context.UserPlans.Add(userPlan);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(pagePath);
+            return await _context.UserPlans.ToListAsync(cancellationToken);
         }
-        public async Task<IActionResult> Update(UserPlan userPlan, string pagePath)
+
+        // GET: api/usersplans/{id}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserPlan>> GetUsersPlan(int id, CancellationToken cancellationToken = default)
         {
-            _context.UserPlans.Update(userPlan);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(pagePath);
+            var userPlan = await _context.UserPlans.FindAsync([id], cancellationToken);
+            if (userPlan == null)
+                return NotFound();
+            return userPlan;
         }
-        public async Task<IActionResult> Delete(UserPlan userPlan, string pagePath)
+
+        // POST: api/usersplans
+        [HttpPost]
+        public async Task<ActionResult<UserPlan>> CreateUsersPlan(UserPlan userPlan, CancellationToken cancellationToken = default)
         {
+            await _context.UserPlans.AddAsync(userPlan, cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);
+            return CreatedAtAction(nameof(GetUsersPlan), new { id = userPlan.Id }, userPlan);
+        }
+
+        // PUT: api/usersplans/{id}
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUsersPlan(int id, UserPlan userPlan, CancellationToken cancellationToken = default)
+        {
+            if (id != userPlan.Id)
+                return BadRequest();
+
+            _context.Entry(userPlan).State = EntityState.Modified;
+            await _context.SaveChangesAsync(cancellationToken);
+            return NoContent();
+        }
+
+        // DELETE: api/usersplans/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUsersPlan(int id, CancellationToken cancellationToken = default)
+        {
+            var userPlan = await _context.UserPlans.FindAsync([id], cancellationToken);
+            if (userPlan == null)
+                return NotFound();
+
             _context.UserPlans.Remove(userPlan);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(pagePath);
-        }
-        public List<UserPlan> Read()
-        {
-            List<UserPlan> userPlans = new List<UserPlan>();
-            foreach (UserPlan up in _context.UserPlans)
-            {
-                userPlans.Add(up);
-            }
-            return userPlans;
+            await _context.SaveChangesAsync(cancellationToken);
+            return NoContent();
         }
     }
 }
