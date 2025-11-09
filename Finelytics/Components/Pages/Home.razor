@@ -38,7 +38,7 @@
                         <td class="plan-actions">
                             <button @onclick="@(() => RedirectToPage($"edit-plan?id={p.Id}"))" class="btn-edit" data-plan-id="1">Редактировать</button>
                             <button @onclick="@(() => RedirectToPage($"plan-info?id={p.Id}"))" class="btn-details" data-plan-id="1">Подробнее</button>
-                            <button @onclick="@(() => RedirectToPage("home"))" class="btn-close-plan" data-plan-id="1">Закрыть план</button>
+                            <button @onclick="@(() => DeletePlan(p.Id))" class="btn-close-plan" data-plan-id="1">Закрыть план</button>
                             <button @onclick="@(() => RedirectToPage($"analythics?id={p.Id}"))" class="btn-analyze hidden" data-plan-id="1">Проанализировать</button>
                         </td>
                     </tr>
@@ -79,6 +79,10 @@
         else{
             return "Неактивен";
         }
+    }
+    public async Task DeletePlan(int id){
+        var _ = await Http.DeleteAsync($"api/plans/{id}");
+        Navigation.NavigateTo($"home?id={Id}");
     }
 
 }
