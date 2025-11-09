@@ -59,6 +59,9 @@
 </div>
 
 @code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name="id")]
+    public int Id {get; set;} = -1
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
