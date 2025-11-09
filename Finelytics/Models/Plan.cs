@@ -9,9 +9,13 @@ namespace finelytics.Models
         public int Id { get; set; }
 
         [Required]
-        [DisplayName("Period")]
-        public DateTime Period { get; set; }
+        [DisplayName("StartDate")]
+        public DateTime StartDate { get; set; }
 
+        [Required]
+        [DisplayName("EndDate")]
+        public DateTime EndDate { get; set; }
+        
         [DisplayName("Planned Amount")]
         [DataType(DataType.Currency)]
         public decimal PlannedAmmount { get; set; }
