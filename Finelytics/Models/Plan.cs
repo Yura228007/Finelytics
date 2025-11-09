@@ -19,5 +19,8 @@ namespace finelytics.Models
         [DisplayName("Planned Amount")]
         [DataType(DataType.Currency)]
         public decimal PlannedAmmount { get; set; }
+
+        [DisplayName("Enable")]
+        public bool IsEnable {get; set;}
     }
 }
