@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -50,11 +54,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\appsettings.json",
+              "RelativeDocumentMoniker": "Finelytics\\appsettings.json",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\appsettings.json",
+              "RelativeToolTip": "Finelytics\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-10T07:16:05.288Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Plan.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Models\\Plan.cs",
               "RelativeDocumentMoniker": "Finelytics\\Models\\Plan.cs",
@@ -62,12 +79,11 @@
               "RelativeToolTip": "Finelytics\\Models\\Plan.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T06:09:19.542Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T06:09:19.542Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "PlansController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Domain\\Controllers\\PlansController.cs",
               "RelativeDocumentMoniker": "Finelytics\\Domain\\Controllers\\PlansController.cs",
@@ -75,12 +91,11 @@
               "RelativeToolTip": "Finelytics\\Domain\\Controllers\\PlansController.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAgwCEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T06:06:24.034Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T06:06:24.034Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Home.razor",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\Home.razor",
@@ -88,12 +103,11 @@
               "RelativeToolTip": "Finelytics\\Components\\Pages\\Home.razor",
               "ViewState": "AgIAADQAAAAAAAAAAAArwCoAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T06:03:50.23Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T06:03:50.23Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Transaction.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Models\\Transaction.cs",
               "RelativeDocumentMoniker": "Finelytics\\Models\\Transaction.cs",
@@ -101,12 +115,11 @@
               "RelativeToolTip": "Finelytics\\Models\\Transaction.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T06:01:36.251Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T06:01:36.251Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Registration.razor",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Registration.razor",
               "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\Registration.razor",
@@ -114,12 +127,11 @@
               "RelativeToolTip": "Finelytics\\Components\\Pages\\Registration.razor",
               "ViewState": "AgIAAAsAAAAAAAAAAAApwBQAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T06:00:35.706Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T06:00:35.706Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AddTransactions.razor",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\AddTransactions.razor",
               "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\AddTransactions.razor",
@@ -127,12 +139,11 @@
               "RelativeToolTip": "Finelytics\\Components\\Pages\\AddTransactions.razor",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T06:00:18.544Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T06:00:18.544Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "LogIn.razor",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\LogIn.razor",
               "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\LogIn.razor",
@@ -140,12 +151,11 @@
               "RelativeToolTip": "Finelytics\\Components\\Pages\\LogIn.razor",
               "ViewState": "AgIAABUAAAAAAAAAAAAAACwAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T05:55:00.667Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T05:55:00.667Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "_Imports.razor",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\_Imports.razor",
               "RelativeDocumentMoniker": "Finelytics\\Components\\_Imports.razor",
@@ -157,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Program.cs",
               "RelativeDocumentMoniker": "Finelytics\\Program.cs",
@@ -165,12 +175,11 @@
               "RelativeToolTip": "Finelytics\\Program.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T07:56:21.686Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-09T07:56:21.686Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "UsersPlansController.cs",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Domain\\Controllers\\UsersPlansController.cs",
               "RelativeDocumentMoniker": "Finelytics\\Domain\\Controllers\\UsersPlansController.cs",
