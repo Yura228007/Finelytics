@@ -1576,7 +1576,8 @@
       },
       "Plan": {
         "required": [
-          "period"
+          "endDate",
+          "startDate"
         ],
         "type": "object",
         "properties": {
@@ -1584,13 +1585,24 @@
             "type": "integer",
             "format": "int32"
           },
-          "period": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endDate": {
             "type": "string",
             "format": "date-time"
           },
           "plannedAmmount": {
             "type": "number",
             "format": "currency"
+          },
+          "isEnable": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false

@@ -18,7 +18,7 @@
                 <label for="reg-password">Пароль:</label>
                 <input @bind-value="user.Password"  type="password" id="reg-password" name="password" required>
             </div>
-        <button @onclick="@(() => Registration())" class="btn-primary">Зарегистрироваться</button>
+        <button @onclick="@(() => Reg())" class="btn-primary">Зарегистрироваться</button>
         <div class="auth-switch">
             <p>Уже есть аккаунт?</p>
             <a @onclick="@(() => RedirectToPage(""))" class="btn-secondary">Войти</a>
@@ -32,13 +32,13 @@
     {
         Navigation.NavigateTo(url);
     }
-    public async Task Registration(){
-        if(!string.IsNullorEmpty(user.Login) && !string.IsNullOrEmpty(user.Password) && !string.IsNullOrEmpty(user.Nickname)){
+    public async Task Reg(){
+        if(!string.IsNullOrEmpty(user.Login) && !string.IsNullOrEmpty(user.Password) && !string.IsNullOrEmpty(user.Nickname)){
             var response = await Http.PostAsJsonAsync("api/users",user);
-            Navigation.NavigateTo("")
+            Navigation.NavigateTo("");
         }
         else{
-            Navigation.NavigateTo("registration")
+            Navigation.NavigateTo("registration");
         }
     }
 }

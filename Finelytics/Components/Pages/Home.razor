@@ -51,10 +51,10 @@
 
 @code {
     [Parameter]
-    [SupplyParameterFromQuery(Name="id")]
-    public int Id {get; set;} = -1
-    public User user {get; set;} = new User()
-    public List<Plan> plans {get; set;} = new List<Plan>()
+    [SupplyParameterFromQuery(Name = "id")]
+    public int Id { get; set; } = -1;
+    public User user { get; set; } = new User();
+    public List<Plan> plans { get; set; } = new List<Plan>();
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
@@ -67,13 +67,13 @@
         List<UserPlan> userPlans = await Http.GetFromJsonAsync<List<UserPlan>>("api/usersplans");
         foreach(UserPlan up in userPlans){
             if(up.UserId == user.Id){
-                Plan plan = Http.GetFromJsonAsync<Plan>($"api/plans/{up.PlanId}");
+                Plan plan = await Http.GetFromJsonAsync<Plan>($"api/plans/{up.PlanId}");
                     plans.Add(plan);
             }
         }
     }
     public string GetStringFormEnablePlan(Plan plan){
-        if(plan.Enable){
+        if(plan.IsEnable){
             return "Активен";
         }
         else{

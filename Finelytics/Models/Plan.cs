@@ -7,6 +7,8 @@ namespace finelytics.Models
     {
         [Key]
         public int Id { get; set; }
+        [DisplayName("Name")]        
+        public string Name { get; set; }
 
         [Required]
         [DisplayName("StartDate")]

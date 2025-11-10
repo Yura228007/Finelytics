@@ -15,7 +15,7 @@
                 </div>
                 <div class="form-group">
                     <label for="transaction-comment">Комментарий:</label>
-                    <textarea @bind-value="transaction.Comment" id="transaction-comment" name="transactionComment" rows="3" placeholder="Например: Покупка продуктов"></textarea>
+                    <input @bind-value="@transaction.Comment" id="transaction-comment" name="transactionComment" rows="3" placeholder="Например: Покупка продуктов"></input>
                 </div>
 
                 <div class="form-actions">
@@ -26,22 +26,22 @@
     </div>
 
 @code {
-	[Parameter]
-	[SupplyParameterFromQuery(Name="id")]
-	public int Id {get;set;} = -1
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "id")]
+    public int Id { get; set; } = -1;
 
-	public Transaction transaction {get;set;} = new Transaction();
+    public Transaction transaction {get;set;} = new Transaction();
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
     }
     public async Task AddTransaction()
     {
-		if(!string.IsNullOrEmpty(transaction.Comment) && transaction.PlannedAmmount != 0){
-			transaction.PlanId = Id;
-			// доделать, нужно чтобы был выбор категорий и у поля транзакции был ее id
-			await Http.PostAsJsonAsync("api/transactions",transaction);
-			Navigation.NavigateTo("transactions")
-		}
+        if(!string.IsNullOrEmpty(transaction.Comment) && transaction.PlannedAmmount != 0){
+            transaction.PlanId = Id;
+            // доделать, нужно чтобы был выбор категорий и у поля транзакции был ее id
+            await Http.PostAsJsonAsync("api/transactions",transaction);
+            Navigation.NavigateTo("transactions");
+        }
     }
 }
