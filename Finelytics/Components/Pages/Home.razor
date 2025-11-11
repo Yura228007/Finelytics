@@ -2,6 +2,7 @@
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 @inject HttpClient Http
+@inject PlansService PlansService
 <link href="app.css" rel="stylesheet" />
 <div id="main-page">
     <header class="main-header">
@@ -53,6 +54,15 @@
     [Parameter]
     [SupplyParameterFromQuery(Name = "id")]
     public int Id { get; set; } = -1;
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "del_id")]
+    public int? DeletePlanId { get; set; } = null;
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "action")]
+    public string Action { get; set; }
+
     public User user { get; set; } = new User();
     public List<Plan> plans { get; set; } = new List<Plan>();
     void RedirectToPage(string url)
@@ -60,15 +70,29 @@
         Navigation.NavigateTo(url);
     }
     protected override async Task OnParametersSetAsync(){
+        Http.BaseAddress = new Uri("http://localhost:5169");
         await LoadData();
     }
     public async Task LoadData(){
+        if (DeletePlanId != null)
+        {
+            await Http.DeleteAsync($"/api/plans/{DeletePlanId}");
+            Navigation.NavigateTo($"home?id={Id}");
+        }
         user = await Http.GetFromJsonAsync<User>($"/api/users/{Id}");
-        List<UserPlan> userPlans = await Http.GetFromJsonAsync<List<UserPlan>>("api/usersplans");
-        foreach(UserPlan up in userPlans){
-            if(up.UserId == user.Id){
-                Plan plan = await Http.GetFromJsonAsync<Plan>($"api/plans/{up.PlanId}");
-                    plans.Add(plan);
+        List<UserPlan> userPlans = await Http.GetFromJsonAsync<List<UserPlan>>("/api/usersplans");
+        if(userPlans.Count>0)
+        {
+            foreach (UserPlan up in userPlans)
+            {
+                if (up.UserId == user.Id)
+                {
+                    var resp = await Http.GetFromJsonAsync<Plan>($"api/plans/{up.PlanId}");
+                    if(resp!= null)
+                    {
+                        plans.Add(resp);
+                    }
+                }
             }
         }
     }
@@ -80,9 +104,9 @@
             return "Неактивен";
         }
     }
-    public async Task DeletePlan(int id){
-        var _ = await Http.DeleteAsync($"api/plans/{id}");
-        Navigation.NavigateTo($"home?id={Id}");
+    public void DeletePlan(int id){
+        plans.Remove(plans.ElementAt(id - 3));// ElementAt(Id-1)
+        Navigation.NavigateTo($"home?id={Id}&del_id={id}");
     }
 
 }

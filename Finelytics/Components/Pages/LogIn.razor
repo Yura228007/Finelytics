@@ -2,10 +2,11 @@
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 @inject HttpClient Http
+@inject UsersService Service
 <link href="app.css" rel="stylesheet" />
 <div id="login-page">
     <div class="auth-form-container">
-        <h2>Please Sign In</h2>
+        <h2>Sign In</h2>
             <div class="form-group">
                 <label for="login-username">Login:</label>
                 <input @bind-value="login" type="text" id="login-username" name="username" required>
@@ -25,6 +26,7 @@
 @code {
     public string login { get; set; } = "Login";
     public string password { get; set; } = "";
+    public List<User> BDUsers = new();
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
@@ -32,13 +34,17 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await Task.Delay(1);
+        Http.BaseAddress = new Uri("http://localhost:5169");
+        if (Service.CurrentUser != null)
+        {
+            await Http.PostAsJsonAsync<User>("api/users",Service.CurrentUser);
+        }
+        BDUsers = await Http.GetFromJsonAsync<List<User>>("api/users");
     }
-    public async Task Login()
+    public void Login()
     {
-        if(!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password)){
-            List<User> users = await Http.GetFromJsonAsync<List<User>>("api/users");    
-            foreach(User u in users){
+        if(!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password)){  
+            foreach(User u in BDUsers){
                 if(login == u.Login && password == u.Password){
                     Navigation.NavigateTo($"home?id={u.Id}");
                 }

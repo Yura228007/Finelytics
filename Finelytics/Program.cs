@@ -1,6 +1,7 @@
 using finelytics.Domain;
 using finelytics.Components;
 using Microsoft.EntityFrameworkCore;
+using finelytics;
 internal class Program
 {
     private static void Main(string[] args)
@@ -22,6 +23,12 @@ internal class Program
         //builder.Services.AddScoped<IUsersGroupsController, UsersGroupsController>();
         //builder.Services.AddScoped<IUsersPlansController, UsersPlansController>();
         builder.Services.AddHttpClient();
+
+        builder.Services.AddScoped<UsersService>();
+        builder.Services.AddScoped<PlansService>();
+        builder.Services.AddScoped<CategoriesService>();
+        builder.Services.AddScoped<TransactionsService>();
+
         var app = builder.Build();
         if (app.Environment.IsDevelopment())
         {

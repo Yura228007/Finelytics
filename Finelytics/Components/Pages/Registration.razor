@@ -2,6 +2,7 @@
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 @inject HttpClient Http
+@inject UsersService Service
 <link href="app.css" rel="stylesheet" />
 <div id="registration-page">
     <div class="auth-form-container">
@@ -27,14 +28,25 @@
 </div>
 
 @code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "post_id")]
+    public int? Id { get; set; }
     User user = new User();
+    protected override async Task OnParametersSetAsync()
+    {
+        if(Id != null)
+        {
+            await Http.PostAsJsonAsync("api/users", user);
+        }
+    }
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
     }
     public async Task Reg(){
         if(!string.IsNullOrEmpty(user.Login) && !string.IsNullOrEmpty(user.Password) && !string.IsNullOrEmpty(user.Nickname)){
-            var response = await Http.PostAsJsonAsync("api/users",user);
+            // var response = await Http.PostAsJsonAsync("api/users",user);
+            Service.CurrentUser = user;
             Navigation.NavigateTo("");
         }
         else{

@@ -1,59 +1,53 @@
 ﻿@page "/create-plan"
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
+@inject PlansService PlansService
 <link href="app.css" rel="stylesheet" />
 <div id="plan-form-page">
     <div class="plan-form-container">
         <h2 id="plan-form-title">Создать план</h2>
             <input type="hidden" id="plan-id" name="planId">
 
-            <div class="form-group">
-                <label for="plan-name">Название плана:</label>
-                <input type="text" id="plan-name" name="planName" required>
-            </div>
+        <div class="form-group">
+            <label for="plan-name">Название плана:</label>
+            <input @bind-value="Plan.Name" type="text" id="plan-name" name="planName" required>
+        </div>
 
-            <div class="form-group date-range-picker">
-                <label>Срок плана:</label>
-                <div class="date-inputs">
-                    <div>
-                        <label for="plan-start-date">С:</label>
-                        <input type="date" id="plan-start-date" name="planStartDate" required>
-                    </div>
-                    <div>
-                        <label for="plan-end-date">:</label>
-                        <input type="date" id="plan-end-date" name="planEndDate" required>
-                    </div>
+        <div class="form-group date-range-picker">
+            <label>Срок плана:</label>
+            <div class="date-inputs">
+                <div>
+                    <label for="plan-start-date">С:</label>
+                    <input @bind-value="Plan.StartDate" type="date" id="plan-start-date" name="planStartDate" required>
+                </div>
+                <div>
+                    <label for="plan-end-date">:</label>
+                    <input @bind-value="Plan.EndDate" type="date" id="plan-end-date" name="planEndDate" required>
                 </div>
             </div>
+        </div>
 
-            <h3>Категории:</h3>
-            <div id="categories-list">
-                <!-- Категории будут добавляться сюда -->
-                <!-- Пример одной категории -->
-                <div class="category-item">
-                    <div class="category-inputs">
-                        <select name="categoryType" class="category-type">
-                            <option value="expense">Расход</option>
-                            <option value="income">Доход</option>
-                        </select>
-                        <input type="text" name="categoryName" placeholder="Название категории" required>
-                        <input type="number" name="categoryBudget" placeholder="Бюджет" required>
-                    </div>
-                    <button type="button" class="btn-delete-category">Удалить</button>
-                </div>
-            </div>
-            <button type="button" id="add-category-btn" class="btn-secondary">Добавить категорию</button>
 
             <div class="form-actions">
-                <button @onclick="@(() => RedirectToPage("create-plan"))" class="btn-primary" id="save-plan-btn">Создать</button>
-                <button @onclick="@(() => RedirectToPage("home"))" class="btn-secondary" id="cancel-plan-form-btn">Отмена</button>
+                <button @onclick="@(() => Create())" class="btn-primary" id="save-plan-btn">Создать</button>
+                <button @onclick="@(() => RedirectToPage($"home?id={Id}"))" class="btn-secondary" id="cancel-plan-form-btn">Отмена</button>
             </div>
     </div>
 </div>
 
 @code {
+    public Plan Plan { get; set; }
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "user_id")]
+    public int Id { get; set; } = -1;
+
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
+    }
+    void Create()
+    {
+        PlansService.CurrentPlan = Plan;
+        Navigation.NavigateTo($"home?id={Id}");
     }
 }

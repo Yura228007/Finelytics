@@ -20,6 +20,44 @@ namespace finelytics.Domain
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<UserPlan>()
+                .HasOne<Plan>()
+                .WithMany()
+                .HasForeignKey(up => up.PlanId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<UserPlan>()
+                .HasOne<User>()
+                .WithMany()
+                .HasForeignKey(up => up.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<PlanCategory>()
+                .HasOne<Plan>()
+                .WithMany()
+                .HasForeignKey(pc => pc.PlanId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<PlanCategory>()
+                .HasOne<Category>()
+                .WithMany()
+                .HasForeignKey(pc => pc.CategoryId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+
+            builder.Entity<UsersGroup>()
+                .HasOne<User>()
+                .WithMany()
+                .HasForeignKey(ug => ug.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<UsersGroup>()
+                .HasOne<Group>()
+                .WithMany()
+                .HasForeignKey(ug => ug.GroupId)
+                .OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }
