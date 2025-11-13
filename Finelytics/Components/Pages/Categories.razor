@@ -1,6 +1,8 @@
 @page "/plan-categories"
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
+@inject @HttpClient Http
+@inject CategoriesService CategoryService
 <link href="app.css" rel="stylesheet" />
 
 <div id="plan-details-page">
@@ -10,18 +12,21 @@
 
         <h3>Категории:</h3>
         <div id="categories-details-list">
-            <div class="category-detail-item">
-                <div class="category-info">
-                    <label class="category-name" for="plan-name">Название категории:</label>
-                    <label class="category-name" id="category-name-display"></label>
-
-                    <label class="category-budget" for="plan-budget">Бюджет:</label>
-                    <label class="category-budget" id="category-budget-display"></label>
-
-                    <label class="category-spent" for="plan-spent">Потрачено:</label>
-                    <label class="category-spent" id="category-spent-display"></label>
-                </div>
-                <button class="btn-edit-category" data-category-id="" @onclick="@(() => NavigateToEditCategory(1))">Изменить категорию</button>
+                 @foreach(Category c in categories)
+                {
+                    <div class="category-detail-item">
+                    <div class="category-info">
+                        <label class="category-name" for="plan-name">Название категории:</label>
+                        <label class="category-name" id="category-name-display">c.Name</label>
+    
+                        <label class="category-budget" for="plan-budget">Бюджет:</label>
+                        <label class="category-budget" id="category-budget-display">c.PlannedAmmount</label>
+    
+                        <label class="category-spent" for="plan-spent">Потрачено:</label>
+                        <label class="category-spent" id="category-spent-display">categoriesTransactions[c.Id]</label>
+                    </div>
+                    <button class="btn-edit-category" data-category-id="" @onclick="@(() => RedirectToPage($"edit-category?id={Id}&plan_id={IdPlan}&category_id={c.Id}"))">Изменить категорию</button>
+                }
                 <button class="btn-add-transaction" data-category-id="1">Добавить запись</button>
             </div>
         </div>
@@ -30,14 +35,44 @@
 </div>
 
 @code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name="user-id")]
+    public int Id {get; set;} = -1;
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name="plan-id")]
+    public int IdPlan {get; set;} = -1;
+
+    public List<Category> categories = new List<Category>();
+    public Dictionary<int,int> categoriesTransactions = new Dictionary<int,int>();
+    protected override async Task OnParametersSetAsync()
+    {
+        List<PlanCategory> planCategories = await Http.GetFromJsonAsync("api/planscategories");
+        List<Category> cats = await Http.GetFromJsonAsync("api/categories");
+        List<Transaction> trans = await Http.GetFromJsonAsync("api/transactions");
+        foreach(PlanCategory pc in planCategories)
+        {
+            if(pc.PlanId == IdPlan)
+            {
+                categories.Add(cats.ElementAt(pc.CategoryId-1));
+            }
+        }
+        foreach(Category ct in categories)
+        {
+            int temp_sum = 0;
+            foreach(Transaction t in trans)
+            {        
+                if(t.CategoryId == ct.Id)
+                {
+                    temp_sum += t.PlannedAmmount;
+                }
+            }
+            categoriesTransactions.Add(ct.Id,temp_sum);
+        }
+    }
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
     }
-    void NavigateToEditCategory(int categoryId)
-    {
-        // Здесь вы должны передать ID категории на страницу редактирования.
-        // Например, если страница называется "EditCategory.razor", URL может быть "/edit-category/1"
-        Navigation.NavigateTo($"/edit-category/{categoryId}");
-    }
+
 }
