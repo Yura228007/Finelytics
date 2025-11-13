@@ -1,5 +1,124 @@
-﻿<h3>Transactions</h3>
+@page "/transactions"
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+@inject HttpClient Http
+
+<link href="app.css" rel="stylesheet" />
+
+<div id="transactions-page">
+    <h2 id="transactions-title">Записи по плану</h2>
+
+    @* Кнопка для добавления новой транзакции, передавая PlanId *@
+    <button @onclick="@(() => RedirectToPage($"add-transaction?id={PlanId}"))" class="btn-add-transaction">Добавить запись</button>
+
+    @* Отображение списка транзакций *@
+    @if (transactions == null)
+    {
+        <p><em>Загрузка записей...</em></p>
+    }
+    else if (!transactions.Any())
+    {
+        <p><em>Пока нет записей для этого плана.</em></p>
+    }
+    else
+    {
+        <table class="transactions-table">
+            <thead>
+                <tr>
+                    <th>Категория</th>
+                    <th>Сумма</th>
+                    <th>Комментарий</th>
+                    <th>Дата</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var transaction in transactions)
+                {
+                    <tr>
+                        <td>@GetCategoryName(transaction.CategoryId)</td>
+                        <td>@transaction.PlannedAmmount.ToString("N2")</td>
+                        <td>@transaction.Comment</td>
+                        <td>
+                        <button @onclick="@(() => RedirectToPage($"add-transaction?id={transaction.Id}"))">Редактировать</button>
+                        @*<button @onclick="@(() => DeleteTransaction(transaction.Id))">Удалить</button>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
 
 @code {
+    // Список всех транзакций
+    private List<Transaction>? transactions;
 
+    // Список всех категорий (для получения имени по ID)
+    private List<Category>? categories;
+
+    // Параметр для получения ID плана из URL
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "id")]
+    public int PlanId { get; set; } = -1; // Значение по умолчанию, если ID не передан
+
+    // Метод для перенаправления на другую страницу
+    void RedirectToPage(string url)
+    {
+        Navigation.NavigateTo(url);
+    }
+
+    // Метод для получения имени категории по ее ID
+    private string GetCategoryName(int categoryId)
+    {
+        if (categories == null)
+        {
+            return "Загрузка..."; // Или "Неизвестно"
+        }
+        var category = categories.FirstOrDefault(c => c.Id == categoryId);
+        return category?.Name ?? "Без категории"; // Возвращаем имя или "Без категории", если не найдено
+    }
+
+    // Метод для загрузки данных при инициализации компонента
+    protected override async Task OnInitializedAsync()
+    {
+        // Устанавливаем PlanId для транзакций
+        // В вашем коде PlanId получается из URL, так что он уже будет доступен
+        // Если PlanId = -1, возможно, нужно обработать этот случай или перенаправить
+        if (PlanId == -1)
+        {
+            // TODO: Обработка случая, когда PlanId не был передан (например, перенаправить на страницу планов)
+            Console.WriteLine("PlanId не был передан.");
+            // Navigation.NavigateTo("plans"); // Пример перенаправления
+            return; // Прекращаем дальнейшую загрузку
+        }
+
+
+        // Загрузка транзакций для конкретного плана
+        try
+        {
+            // Замените "api/transactions" на актуальный эндпоинт вашего API
+            // Убедитесь, что API может фильтровать транзакции по PlanId
+            transactions = await Http.GetFromJsonAsync<List<Transaction>>($"api/transactions?planId={PlanId}");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Ошибка загрузки транзакций: {ex.Message}");
+            // TODO: Вывести сообщение пользователю об ошибке
+        }
+
+        // Загрузка категорий (нужны для отображения имен категорий в таблице)
+        try
+        {
+            // Замените "api/categories" на актуальный эндпоинт вашего API
+            // Если категории зависят от плана, передавайте PlanId
+            categories = await Http.GetFromJsonAsync<List<Category>>($"api/categories?planId={PlanId}");
+            // Если категории не зависят от плана, то просто:
+            // categories = await Http.GetFromJsonAsync<List<Category>>("api/categories");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"Ошибка загрузки категорий: {ex.Message}");
+            // TODO: Вывести сообщение пользователю об ошибке
+        }
+    }
 }
