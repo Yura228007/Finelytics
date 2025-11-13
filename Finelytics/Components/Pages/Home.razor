@@ -74,10 +74,16 @@
         await LoadData();
     }
     public async Task LoadData(){
-        if (DeletePlanId != null)
+        if(Action == "delete"){
+            if (DeletePlanId != null)
+            {
+                await Http.DeleteAsync($"/api/plans/{DeletePlanId}");
+                Navigation.NavigateTo($"home?id={Id}");
+            }
+        }
+        if(Action == "create-plan")
         {
-            await Http.DeleteAsync($"/api/plans/{DeletePlanId}");
-            Navigation.NavigateTo($"home?id={Id}");
+            await Http.PostAsJsonAsync<Plan>("api/plans", PlansService.CurrentPlan);
         }
         user = await Http.GetFromJsonAsync<User>($"/api/users/{Id}");
         List<UserPlan> userPlans = await Http.GetFromJsonAsync<List<UserPlan>>("/api/usersplans");
@@ -106,7 +112,7 @@
     }
     public void DeletePlan(int id){
         plans.Remove(plans.ElementAt(id - 3));// ElementAt(Id-1)
-        Navigation.NavigateTo($"home?id={Id}&del_id={id}");
+        Navigation.NavigateTo($"home?id={Id}&del_id={id}&action={"delete"}");
     }
 
 }
