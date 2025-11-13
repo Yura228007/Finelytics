@@ -1,5 +1,43 @@
-﻿<h3>Categories</h3>
+@page "/plan-categories"
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+<link href="app.css" rel="stylesheet" />
+
+<div id="plan-details-page">
+    <div class="plan-details-container">
+        <h2 id="details-plan-title"></h2>
+        <p id="details-plan-dates"></p>
+
+        <h3>Категории:</h3>
+        <div id="categories-details-list">
+            <div class="category-detail-item">
+                <div class="category-info">
+                    <label class="category-name" for="plan-name">Название категории:</label>
+                    <label class="category-name" id="category-name-display"></label>
+
+                    <label class="category-budget" for="plan-budget">Бюджет:</label>
+                    <label class="category-budget" id="category-budget-display"></label>
+
+                    <label class="category-spent" for="plan-spent">Потрачено:</label>
+                    <label class="category-spent" id="category-spent-display"></label>
+                </div>
+                <button class="btn-edit-category" data-category-id="" @onclick="@(() => NavigateToEditCategory(1))">Изменить категорию</button>
+                <button class="btn-add-transaction" data-category-id="1">Добавить запись</button>
+            </div>
+        </div>
+        <button @onclick="@(() => RedirectToPage("home"))" class="btn-secondary" id="back-to-main-btn">Назад</button>
+    </div>
+</div>
 
 @code {
-
+    void RedirectToPage(string url)
+    {
+        Navigation.NavigateTo(url);
+    }
+    void NavigateToEditCategory(int categoryId)
+    {
+        // Здесь вы должны передать ID категории на страницу редактирования.
+        // Например, если страница называется "EditCategory.razor", URL может быть "/edit-category/1"
+        Navigation.NavigateTo($"/edit-category/{categoryId}");
+    }
 }
