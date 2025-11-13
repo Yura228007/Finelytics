@@ -1,5 +1,50 @@
-﻿<h3>EditTransaction</h3>
+@page "/edit-transaction"
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+@inject HttpClient Http
+<link href="app.css" rel="stylesheet" />
+<div id="add-transaction-page">
+    <div class="transaction-form-container">
+        <h2 id="add-transaction-title">Добавить запись</h2>
+        <input type="hidden" id="transaction-plan-id">
+        Сделать динамический динамический рендеринг для категорий
+        <select>
+            <option value="value">text</option>
+        </select>
+        <div class="form-group">
+            <label for="transaction-amount">Сумма:</label>
+            <input @bind-value="transaction.PlannedAmmount" type="number" id="transaction-amount" name="transactionAmount" placeholder="0.00" required>
+        </div>
+        <div class="form-group">
+            <label for="transaction-comment">Комментарий:</label>
+            <input @bind-value="@transaction.Comment" id="transaction-comment" name="transactionComment" rows="3" placeholder="Например: Покупка продуктов"></input>
+        </div>
+
+        <div class="form-actions">
+            <button @onclick="@(() => AddTransaction())" class="btn-primary">Сохранить</button>
+            <button @onclick="@(() => RedirectToPage("home"))" class="btn-secondary" id="cancel-transaction-btn">Отмена</button>
+        </div>
+    </div>
+</div>
 
 @code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "id")]
+    public int Id { get; set; } = -1;
 
+    public Transaction transaction { get; set; } = new Transaction();
+    void RedirectToPage(string url)
+    {
+        Navigation.NavigateTo(url);
+    }
+    public async Task AddTransaction()
+    {
+        if (!string.IsNullOrEmpty(transaction.Comment) && transaction.PlannedAmmount != 0)
+        {
+            transaction.PlanId = Id;
+            // доделать, нужно чтобы был выбор категорий и у поля транзакции был ее id
+            await Http.PostAsJsonAsync("api/transactions", transaction);
+            Navigation.NavigateTo("transactions");
+        }
+    }
 }
