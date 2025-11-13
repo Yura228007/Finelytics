@@ -37,10 +37,11 @@
                         <td class="plan-date-range">@p.StartDate.ToString("dd.mm.yyyy") - @p.EndDate.ToString("dd.mm.yyyy")</td>
                         <td class="plan-status">@GetStringFormEnablePlan(p)</td>
                         <td class="plan-actions">
-                            <button @onclick="@(() => RedirectToPage($"edit-plan?id={p.Id}"))" class="btn-edit" data-plan-id="1">Редактировать</button>
-                            <button @onclick="@(() => RedirectToPage($"plan-info?id={p.Id}"))" class="btn-details" data-plan-id="1">Подробнее</button>
+                            <button @onclick="@(() => RedirectToPage($"edit-plan?id={Id}&plan_id={p.Id}"))" class="btn-edit" data-plan-id="1">Редактировать</button>
+                            <button @onclick="@(() => RedirectToPage($"plan-categories?id={Id}&plan"))" class="btn-details" data-plan-id="1">Категории</button>
+                            @*добавь кнопку "транзакции"*@
                             <button @onclick="@(() => DeletePlan(p.Id))" class="btn-close-plan" data-plan-id="1">Закрыть план</button>
-                            <button @onclick="@(() => RedirectToPage($"analythics?id={p.Id}"))" class="btn-analyze hidden" data-plan-id="1">Проанализировать</button>
+                            <button @onclick="@(() => RedirectToPage($"analythics?id={Id}"))" class="btn-analyze hidden" data-plan-id="1">Проанализировать</button>
                         </td>
                     </tr>
                     }
