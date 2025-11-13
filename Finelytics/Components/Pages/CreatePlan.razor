@@ -48,6 +48,6 @@
     void Create()
     {
         PlansService.CurrentPlan = Plan;
-        Navigation.NavigateTo($"home?id={Id}");
+        Navigation.NavigateTo($"home?id={Id}&action={"create-plan"}");
     }
 }
