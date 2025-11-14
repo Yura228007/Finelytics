@@ -37,7 +37,7 @@
                     <tr>
                         <td>@transactionCategories[t.Id]</td>
                         <td>@t.PlannedAmmount</td>
-                        <td>@transaction.Comment</td>
+                        <td>@t.Comment</td>
                         <td>
                         <button @onclick="@(() => RedirectToPage($"add-transaction?id={Id}&plan_id={PlanId}&transaction_id={t.Id}"))">Редактировать</button>
                         @*<button @onclick="@(() => DeleteTransaction(transaction.Id))">Удалить</button>*@
@@ -53,14 +53,15 @@
     [Parameter]
     [SupplyParameterFromQuery(Name = "id")]
     public int Id { get; set; } = -1; // Значение по умолчанию, если ID не передан
-    
+
     [Parameter]
     [SupplyParameterFromQuery(Name = "plan_id")]
     public int PlanId { get; set; } = -1; // Значение по умолчанию, если ID не передан
 
     private List<Transaction>? transactions;
+    private List<Category> categories;
 
-    public Dictionary<int,Category> transactionCategories = new Dictionary<int,Category>
+    public Dictionary<int, Category> transactionCategories = new Dictionary<int, Category>();
 
     // Метод для перенаправления на другую страницу
     void RedirectToPage(string url)
@@ -69,20 +70,20 @@
     }
 
     // Метод для получения имени категории по ее ID
-    private string GetCategoryName(int categoryId)
-    {
-        if (categories == null)
-        {
-            return "Загрузка..."; // Или "Неизвестно"
-        }
-        var category = categories.FirstOrDefault(c => c.Id == categoryId);
-        return category?.Name ?? "Без категории"; // Возвращаем имя или "Без категории", если не найдено
-    }
+    // private string GetCategoryName(int categoryId)
+    // {
+    //     if (categories == null)
+    //     {
+    //         return "Загрузка..."; // Или "Неизвестно"
+    //     }
+    //     var category = categories.FirstOrDefault(c => c.Id == categoryId);
+    //     return category?.Name ?? "Без категории"; // Возвращаем имя или "Без категории", если не найдено
+    // }
 
     protected override async Task OnParametersSetAsync()
     {
-        List<Transaction> trans = await Http.GetFromJsonAsync<Transaction>("api/transactions");    
-        categories = await Http.GetFromJsonAsync<Category>("api/categories");
+        List<Transaction> trans = await Http.GetFromJsonAsync<List<Transaction>>("api/transactions");    
+        categories = await Http.GetFromJsonAsync<List<Category>>("api/categories");
         foreach(Transaction t in trans)
         {
             if(t.PlanId == PlanId)
@@ -92,7 +93,7 @@
         }
         foreach(Transaction t in trans)
         {
-            foreach(Categories c in categories)
+            foreach(Category c in categories)
             {
                 if(t.CategoryId == c.Id)
                 {

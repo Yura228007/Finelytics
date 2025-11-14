@@ -1,7 +1,7 @@
 @page "/plan-categories"
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
-@inject @HttpClient Http
+@inject HttpClient Http
 @inject CategoriesService CategoryService
 <link href="app.css" rel="stylesheet" />
 
@@ -12,24 +12,25 @@
 
         <h3>Категории:</h3>
         <div id="categories-details-list">
-                 @foreach(Category c in categories)
-                {
-                    <div class="category-detail-item">
-                    <div class="category-info">
-                        <label class="category-name" for="plan-name">Название категории:</label>
-                        <label class="category-name" id="category-name-display">c.Name</label>
-    
-                        <label class="category-budget" for="plan-budget">Бюджет:</label>
-                        <label class="category-budget" id="category-budget-display">c.PlannedAmmount</label>
-    
-                        <label class="category-spent" for="plan-spent">Потрачено:</label>
-                        <label class="category-spent" id="category-spent-display">categoriesTransactions[c.Id]</label>
-                    </div>
-                    <button class="btn-edit-category" data-category-id="" @onclick="@(() => RedirectToPage($"edit-category?id={Id}&plan_id={IdPlan}&category_id={c.Id}"))">Изменить категорию</button>
-                }
-                <button class="btn-add-transaction" data-category-id="1">Добавить запись</button>
-            </div>
+            <button @onclick="@(() => RedirectToPage($"add-category?id={Id}&plan_id={IdPlan}"))" class="btn-add-transaction" data-category-id="1">Добавить запись</button>
         </div>
+        @foreach(Category c in categories)
+        {
+            <div class="category-detail-item">
+                <div class="category-info">
+                    <label class="category-name" for="plan-name">Название категории:</label>
+                    <label class="category-name" id="category-name-display">c.Name</label>
+
+                    <label class="category-budget" for="plan-budget">Бюджет:</label>
+                    <label class="category-budget" id="category-budget-display">c.PlannedAmmount</label>
+
+                    <label class="category-spent" for="plan-spent">Потрачено:</label>
+                    <label class="category-spent" id="category-spent-display">@categoriesTransactions[c.Id]</label>
+                </div>
+            </div>
+            <button class="btn-edit-category" data-category-id="" @onclick="@(() => RedirectToPage($"edit-category?id={Id}&plan_id={IdPlan}&category_id={c.Id}"))">Изменить категорию</button>
+        }
+
         <button @onclick="@(() => RedirectToPage("home"))" class="btn-secondary" id="back-to-main-btn">Назад</button>
     </div>
 </div>
@@ -44,12 +45,12 @@
     public int IdPlan {get; set;} = -1;
 
     public List<Category> categories = new List<Category>();
-    public Dictionary<int,int> categoriesTransactions = new Dictionary<int,int>();
+    public Dictionary<int,decimal> categoriesTransactions = new Dictionary<int,decimal>();
     protected override async Task OnParametersSetAsync()
     {
-        List<PlanCategory> planCategories = await Http.GetFromJsonAsync("api/planscategories");
-        List<Category> cats = await Http.GetFromJsonAsync("api/categories");
-        List<Transaction> trans = await Http.GetFromJsonAsync("api/transactions");
+        List<PlanCategory>? planCategories = await Http.GetFromJsonAsync<List<PlanCategory>>("api/planscategories");
+        List<Category>? cats = await Http.GetFromJsonAsync<List<Category>>("api/categories");
+        List<Transaction>? trans = await Http.GetFromJsonAsync<List<Transaction>>("api/transactions");
         foreach(PlanCategory pc in planCategories)
         {
             if(pc.PlanId == IdPlan)
@@ -59,7 +60,7 @@
         }
         foreach(Category ct in categories)
         {
-            int temp_sum = 0;
+            decimal temp_sum = 0;
             foreach(Transaction t in trans)
             {        
                 if(t.CategoryId == ct.Id)

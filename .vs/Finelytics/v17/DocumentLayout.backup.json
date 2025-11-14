@@ -1,82 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\",
+  "WorkspaceRootPath": "C:\\Users\\Student\\Documents\\GitHub\\Finelytics\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\student\\documents\\github\\finelytics\\finelytics\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\login.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\domain\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\domain\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\components\\pages\\registration.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\registration.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\domain\\app_dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\domain\\app_dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\models\\plan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\models\\plan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\domain\\controllers\\usersplanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\domain\\controllers\\usersplanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\domain\\controllers\\planscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\domain\\controllers\\planscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\components\\pages\\addtransactions.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\addtransactions.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\components\\pages\\edittransaction.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\edittransaction.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\components\\pages\\transactions.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\transactions.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\components\\pages\\createcategory.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\createcategory.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\components\\pages\\editcategory.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\editcategory.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\components\\pages\\categories.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\student\\documents\\github\\finelytics\\finelytics\\components\\pages\\categories.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\categories.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\student\\documents\\github\\finelytics\\finelytics\\components\\pages\\transactions.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\transactions.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -86,241 +22,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\UserService.cs",
-              "RelativeDocumentMoniker": "Finelytics\\UserService.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\UserService.cs",
-              "RelativeToolTip": "Finelytics\\UserService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T13:28:51.849Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "PlansController.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Domain\\Controllers\\PlansController.cs",
-              "RelativeDocumentMoniker": "Finelytics\\Domain\\Controllers\\PlansController.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Domain\\Controllers\\PlansController.cs",
-              "RelativeToolTip": "Finelytics\\Domain\\Controllers\\PlansController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABkAAAAPAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T06:06:24.034Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Home.razor",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Home.razor",
-              "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\Home.razor",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Home.razor",
-              "RelativeToolTip": "Finelytics\\Components\\Pages\\Home.razor",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAGYAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T06:03:50.23Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Transaction.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Models\\Transaction.cs",
-              "RelativeDocumentMoniker": "Finelytics\\Models\\Transaction.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Models\\Transaction.cs",
-              "RelativeToolTip": "Finelytics\\Models\\Transaction.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T06:01:36.251Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "LogIn.razor",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\LogIn.razor",
+              "DocumentMoniker": "C:\\Users\\Student\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\LogIn.razor",
               "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\LogIn.razor",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\LogIn.razor",
+              "ToolTip": "C:\\Users\\Student\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\LogIn.razor",
               "RelativeToolTip": "Finelytics\\Components\\Pages\\LogIn.razor",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAACcAAABOAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAABwAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T05:55:00.667Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Program.cs",
-              "RelativeDocumentMoniker": "Finelytics\\Program.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Program.cs",
-              "RelativeToolTip": "Finelytics\\Program.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAYwBkAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T07:56:21.686Z",
+              "WhenOpened": "2025-11-14T13:51:03.864Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Domain\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "Finelytics\\Domain\\Controllers\\UsersController.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Domain\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "Finelytics\\Domain\\Controllers\\UsersController.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowC8AAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T09:55:49.887Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UsersPlansController.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Domain\\Controllers\\UsersPlansController.cs",
-              "RelativeDocumentMoniker": "Finelytics\\Domain\\Controllers\\UsersPlansController.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Domain\\Controllers\\UsersPlansController.cs",
-              "RelativeToolTip": "Finelytics\\Domain\\Controllers\\UsersPlansController.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAwwEUAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-09T07:49:29.542Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AddTransactions.razor",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\AddTransactions.razor",
-              "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\AddTransactions.razor",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\AddTransactions.razor",
-              "RelativeToolTip": "Finelytics\\Components\\Pages\\AddTransactions.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T06:00:18.544Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Plan.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Models\\Plan.cs",
-              "RelativeDocumentMoniker": "Finelytics\\Models\\Plan.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Models\\Plan.cs",
-              "RelativeToolTip": "Finelytics\\Models\\Plan.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T06:09:19.542Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Registration.razor",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Registration.razor",
-              "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\Registration.razor",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Registration.razor",
-              "RelativeToolTip": "Finelytics\\Components\\Pages\\Registration.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-10T06:00:35.706Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\appsettings.json",
-              "RelativeDocumentMoniker": "Finelytics\\appsettings.json",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\appsettings.json",
-              "RelativeToolTip": "Finelytics\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-10T07:16:05.288Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "App_DbContext.cs",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Domain\\App_DbContext.cs",
-              "RelativeDocumentMoniker": "Finelytics\\Domain\\App_DbContext.cs",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Domain\\App_DbContext.cs",
-              "RelativeToolTip": "Finelytics\\Domain\\App_DbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T11:36:51.423Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Categories.razor",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Categories.razor",
-              "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\Categories.razor",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Categories.razor",
-              "RelativeToolTip": "Finelytics\\Components\\Pages\\Categories.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-11T09:45:57.214Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "EditCategory.razor",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\EditCategory.razor",
-              "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\EditCategory.razor",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\EditCategory.razor",
-              "RelativeToolTip": "Finelytics\\Components\\Pages\\EditCategory.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-11T09:46:21.703Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "CreateCategory.razor",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\CreateCategory.razor",
-              "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\CreateCategory.razor",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\CreateCategory.razor",
-              "RelativeToolTip": "Finelytics\\Components\\Pages\\CreateCategory.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-11T09:46:38.322Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
               "Title": "Transactions.razor",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Transactions.razor",
+              "DocumentMoniker": "C:\\Users\\Student\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Transactions.razor",
               "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\Transactions.razor",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Transactions.razor",
+              "ToolTip": "C:\\Users\\Student\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Transactions.razor",
               "RelativeToolTip": "Finelytics\\Components\\Pages\\Transactions.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAAEMAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-11T09:46:52.222Z"
+              "WhenOpened": "2025-11-14T13:43:21.318Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "EditTransaction.razor",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\EditTransaction.razor",
-              "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\EditTransaction.razor",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\EditTransaction.razor",
-              "RelativeToolTip": "Finelytics\\Components\\Pages\\EditTransaction.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Categories.razor",
+              "DocumentMoniker": "C:\\Users\\Student\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Categories.razor",
+              "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\Categories.razor",
+              "ToolTip": "C:\\Users\\Student\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Categories.razor",
+              "RelativeToolTip": "Finelytics\\Components\\Pages\\Categories.razor",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAB0AAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-11T09:48:26.194Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "_Imports.razor",
-              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\_Imports.razor",
-              "RelativeDocumentMoniker": "Finelytics\\Components\\_Imports.razor",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\_Imports.razor",
-              "RelativeToolTip": "Finelytics\\Components\\_Imports.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-09T07:57:08.676Z"
+              "WhenOpened": "2025-11-14T13:31:08.554Z",
+              "EditorCaption": ""
             }
           ]
         }
