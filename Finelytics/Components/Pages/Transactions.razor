@@ -2,7 +2,7 @@
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 @inject HttpClient Http
-
+@inject TransactionsService Service
 <link href="app.css" rel="stylesheet" />
 
 <div id="transactions-page">
@@ -10,12 +10,6 @@
 
     @* Кнопка для добавления новой транзакции, передавая PlanId *@
     <button @onclick="@(() => RedirectToPage($"add-transaction?id={PlanId}"))" class="btn-add-transaction">Добавить запись</button>
-
-    @* Отображение списка транзакций *@
-    @if (transactions == null)
-    {
-        <p><em>Загрузка записей...</em></p>
-    }
     else if (!transactions.Any())
     {
         <p><em>Пока нет записей для этого плана.</em></p>
@@ -40,48 +34,59 @@
                         <td>@t.Comment</td>
                         <td>
                         <button @onclick="@(() => RedirectToPage($"add-transaction?id={Id}&plan_id={PlanId}&transaction_id={t.Id}"))">Редактировать</button>
-                        @*<button @onclick="@(() => DeleteTransaction(transaction.Id))">Удалить</button>*@
+                        <button @onclick="@(() => Del(t.Id))">Удалить</button>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
     }
+    <button @onclick="@(() => RedirectToPage($"home?user_id={Id}"))" class="btn-secondary" id="back-to-main-btn">Назад</button>
 </div>
 
 @code {
     [Parameter]
-    [SupplyParameterFromQuery(Name = "id")]
-    public int Id { get; set; } = -1; // Значение по умолчанию, если ID не передан
+    [SupplyParameterFromQuery(Name = "user_id")]
+    public int Id { get; set; } = -1;
 
     [Parameter]
     [SupplyParameterFromQuery(Name = "plan_id")]
-    public int PlanId { get; set; } = -1; // Значение по умолчанию, если ID не передан
+    public int PlanId { get; set; } = -1;
 
-    private List<Transaction>? transactions;
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "del_id")]
+    public int? DeleteTransactionId { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "action")]
+    public string? Action { get; set; }
+
+    private List<Transaction> transactions;
     private List<Category> categories;
 
     public Dictionary<int, Category> transactionCategories = new Dictionary<int, Category>();
 
-    // Метод для перенаправления на другую страницу
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
     }
 
-    // Метод для получения имени категории по ее ID
-    // private string GetCategoryName(int categoryId)
-    // {
-    //     if (categories == null)
-    //     {
-    //         return "Загрузка..."; // Или "Неизвестно"
-    //     }
-    //     var category = categories.FirstOrDefault(c => c.Id == categoryId);
-    //     return category?.Name ?? "Без категории"; // Возвращаем имя или "Без категории", если не найдено
-    // }
 
     protected override async Task OnParametersSetAsync()
     {
+        if(Action == "delete" && DeleteTransactionId != null)
+        {
+            await Http.DeleteAsync($"api/transactions/{DeleteTransactionId}");
+            RedirectToPage($"transactions?id={Id}&plan_id={PlanId}");
+        }
+        if(Action == "create")
+        {
+            await Http.PostAsJsonAsync<Transaction>("api/transactions",Service.CurrentTransaction);
+        }
+        if(Action == "edit")
+        {
+            await Http.PutAsJsonAsync<Transaction>($"api/transactions/{Service.CurrentTransaction.Id}", Service.CurrentTransaction);
+        }
         List<Transaction> trans = await Http.GetFromJsonAsync<List<Transaction>>("api/transactions");    
         categories = await Http.GetFromJsonAsync<List<Category>>("api/categories");
         foreach(Transaction t in trans)
@@ -101,5 +106,10 @@
                 }
             }
         }
+    }
+    public void Del(int id)
+    {
+        transactions.RemoveAt(id - 1);
+        RedirectToPage($"transactions?id={Id}&plan_id={PlanId}&del_id={id}");
     }
 }

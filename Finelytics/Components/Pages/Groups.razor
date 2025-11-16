@@ -1,0 +1,123 @@
+﻿@page "/groups"
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+@inject HttpClient Http
+@inject GroupsService Service 
+
+<link href="app.css" rel="stylesheet" />
+<div id="my-groups-page">
+    <header class="page-header">
+        <button @onclick="@(() => RedirectToPage($"home?user_id={Id}"))" class="btn-back">← Назад</button>
+        <button @onclick="@(() => RedirectToPage($"create-group?user_id={Id}"))" class="btn-primary">Добавить группу</button>
+        <h1>Ваши группы</h1>
+    </header>
+
+    <main class="groups-content">
+        @if (userGroups != null && userGroups.Any())
+        {
+            @foreach (var group in userGroups)
+            {
+                <div class="group-card">
+                    <h3>@group.Name</h3>
+                    <div class="group-users">
+                        <h4>Участники:</h4>
+                        <ul>
+                            @foreach (var user in members[group.Id])
+                            {
+                                <li>@user.Nickname     <button @onclick="@(() => DelUserFromGroup(user.Id))" class="btn-secondary">Удалить из группы</button></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="group-actions">
+                        <button @onclick="@(() => RedirectToPage("group-plan"))" class="btn-secondary">Посмотреть планы группы</button>
+                        <button @onclick="@(() => RedirectToPage("add-user-to-group"))" class="btn-primary">Добавить пользователя</button>
+                        <button @onclick="@(() => RedirectToPage("edit-group"))" class="btn-primary">Изменить данные группы</button>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <p>У вас пока нет групп.</p>
+            <button @onclick="@(() => RedirectToPage(""))" class="btn-primary">Cоздать группу</button>
+        }
+    </main>
+</div>
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name ="user_id")]
+    public int Id { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "action")]
+    public string? Action { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "del_id")]
+    public int? DeleteUserId { get; set; }
+
+    public List<Group> userGroups { get; set; }
+
+    Dictionary<int, List<User>> members = new Dictionary<int, List<User>>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if(Action == "delete_user" && DeleteUserId!=null)
+        {
+            await Http.DeleteAsync($"api/usersgroups/{DeleteUserId}");
+        }
+        if(Action == "edit")
+        {
+            await Http.PutAsJsonAsync<Group>($"api/groups/{Service.CurrentGroup.Id}",Service.CurrentGroup);
+        }
+        if(Action == "create")
+        {
+            await Http.PostAsJsonAsync<Group>($"api/groups", Service.CurrentGroup);
+        }
+        List<User> users = await Http.GetFromJsonAsync<List<User>>("api/users");
+        List<Group> groups = await Http.GetFromJsonAsync<List<Group>>("api/groups");
+        List<UsersGroup> usersGroups = await Http.GetFromJsonAsync<List<UsersGroup>>("api/usersgroups");
+        List<Group> cur_groups = new List<Group>();
+        foreach(var ug in usersGroups)
+        {
+            if(ug.UserId == Id)
+            {
+                foreach(var g in groups)
+                {
+                    if(ug.GroupId == g.Id)
+                    {
+                        userGroups.Add(g);
+                    }
+                }
+            }
+        }
+        foreach(var g in userGroups)
+        {
+            List<User> temp = new();
+            foreach(var ug in usersGroups)
+            {
+                if(g.Id == ug.GroupId)
+                {
+                    foreach(var u in users)
+                    {
+                        if(ug.UserId == u.Id)
+                        {
+                            temp.Add(u);
+                        }
+                    }
+                }
+            }
+            members.Add(g.Id, temp);
+        }
+    }
+
+    void RedirectToPage(string url)
+    {
+        Navigation.NavigateTo(url);
+    }
+    void DelUserFromGroup(int id)
+    {
+        
+    }
+}

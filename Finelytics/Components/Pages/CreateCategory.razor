@@ -1,7 +1,8 @@
 @page "/add-category"
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
-
+@inject HttpClient Http
+@inject CategoriesService Service
 <link href="app.css" rel="stylesheet" />
 
 <div id="add-category-page">
@@ -11,28 +12,17 @@
             <div class="category-form">
                 <div class="form-group">
                     <label class="category-name-label" for="category-name-input">Название категории:</label>
-                    <input type="text" id="category-name-input" @bind="categoryToEdit.Name" class="form-control" required />
-
-                    <label class="category-name" id="category-name-display">@categoryToEdit.Name</label>
+                    <input type="text" id="category-name-input" @bind="category.Name" class="form-control" required />
                 </div>
 
                 <div class="form-group">
                     <label class="category-budget-label" for="category-budget-input">Бюджет:</label>
-                    <input type="number" id="category-budget-input" @bind="categoryToEdit.Budget" class="form-control" required />
-
-                    <label class="category-budget" id="category-budget-display">@categoryToEdit.Budget</label>
-                </div>
-
-                <div class="form-group">
-                    <label class="category-spent-label" for="category-spent-input">Потрачено:</label>
-                    <input type="number" id="category-spent-input" @bind="categoryToEdit.Spent" class="form-control" required readonly />
-
-                    <label class="category-spent" id="category-spent-display">@categoryToEdit.Spent</label>
+                    <input type="number" id="category-budget-input" @bind="category.PlannedAmmount" class="form-control" required />
                 </div>
 
                 <div class="form-actions">
-                    <button class="btn-save-category" @onclick="SaveCategory">Создать</button>
-                    <button class="btn-cancel-edit" @onclick="CancelEdit">Отмена</button>
+                    <button class="btn-save-category" @onclick="@(() => Create())">Создать</button>
+                <button class="btn-cancel-edit" @onclick="@(() => RedirectToPage($"categories?user_id={Id}&plan_id={PlanId}"))">Отмена</button>
                 </div>
             </div>
     </div>
@@ -40,70 +30,30 @@
 
 @code {
     [Parameter]
-    public int CategoryId { get; set; }
+    [SupplyParameterFromQuery(Name ="user_id")]
+    public int Id { get; set; }
 
-    private Category categoryToEdit; // Предполагаем, что у вас есть класс Category
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "plan_id")]
+    public int PlanId { get; set; }
 
-    protected override async Task OnInitializedAsync()
+    public Category category = new Category();
+
+
+
+    private async Task Create()
     {
-        // Здесь нужно загрузить данные категории по CategoryId
-        // Это пример, замените на вашу реальную логику доступа к данным (сервис, API и т.д.)
-        categoryToEdit = await LoadCategoryData(CategoryId);
-
-        if (categoryToEdit == null)
+        if (category != null)
         {
-            // Обработка случая, когда категория не найдена
-            // Можно перенаправить пользователя или показать сообщение об ошибке
-            Navigation.NavigateTo("/plan-categories"); // Возврат к списку категорий
+            Service.CurrentCategory = category;
+            Navigation.NavigateTo($"plan-categories?user_id={Id}&plan_id={PlanId}&action={"create"}");
         }
     }
 
-    // Метод для симуляции загрузки данных категории
-    private async Task<Category> LoadCategoryData(int id)
+    void RedirectToPage(string url)
     {
-        // В реальном приложении здесь будет вызов вашего сервиса для получения данных
-        // Например: return await _categoryService.GetCategoryByIdAsync(id);
-
-        // Имитация данных для примера:
-        await Task.Delay(100); // Имитация асинхронной операции
-        if (id == 1)
-        {
-            return new Category { Id = 1, Name = "Развлечения", Budget = 1000, Spent = 500 };
-        }
-        else if (id == 2)
-        {
-            return new Category { Id = 2, Name = "Продукты", Budget = 5000, Spent = 3200 };
-        }
-        return null;
+        Navigation.NavigateTo(url);
     }
 
-    private async Task SaveCategory()
-    {
-        if (categoryToEdit != null)
-        {
-            // Здесь нужно сохранить измененные данные категории
-            // Например: await _categoryService.UpdateCategoryAsync(categoryToEdit);
-
-            // После сохранения возвращаемся на страницу со списком категорий
-            Navigation.NavigateTo("/plan-categories");
-        }
-    }
-
-    // Метод для отмены редактирования
-    private void CancelEdit()
-    {
-        // Просто возвращаемся на страницу со списком категорий без сохранения
-        Navigation.NavigateTo("/plan-categories");
-    }
-
-    // Предполагаемая модель Category
-    public class Category
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public decimal Budget { get; set; }
-        public decimal Spent { get; set; }
-        // Возможно, другие свойства, связанные с планом
-        public int PlanId { get; set; }
-    }
+   
 }

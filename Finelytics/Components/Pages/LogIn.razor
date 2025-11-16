@@ -47,7 +47,7 @@
         if(!string.IsNullOrEmpty(login) && !string.IsNullOrEmpty(password)){  
             foreach(User u in BDUsers){
                 if(login == u.Login && password == u.Password){
-                    Navigation.NavigateTo($"home?id={u.Id}&action={"login"}");
+                    Navigation.NavigateTo($"home?user_id={u.Id}");
                 }
             }
         }

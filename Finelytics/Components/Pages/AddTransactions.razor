@@ -2,6 +2,7 @@
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 @inject HttpClient Http
+@inject TransactionsService Service
 <link href="app.css" rel="stylesheet" />
 <div id="add-transaction-page" >
         <div class="transaction-form-container">
@@ -27,21 +28,24 @@
 
 @code {
     [Parameter]
-    [SupplyParameterFromQuery(Name = "id")]
+    [SupplyParameterFromQuery(Name = "user_id")]
     public int Id { get; set; } = -1;
 
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "plan_id")]
+    public int PlanId { get; set; } = -1;
     public Transaction transaction {get;set;} = new Transaction();
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
     }
-    public async Task AddTransaction()
+    public void AddTransaction()
     {
         if(!string.IsNullOrEmpty(transaction.Comment) && transaction.PlannedAmmount != 0){
             transaction.PlanId = Id;
             // доделать, нужно чтобы был выбор категорий и у поля транзакции был ее id
-            await Http.PostAsJsonAsync("api/transactions",transaction);
-            Navigation.NavigateTo("transactions");
+            Service.CurrentTransaction = transaction;
+            RedirectToPage($"transactions?id={Id}&plan_id={PlanId}&action={"create"}");
         }
     }
 }

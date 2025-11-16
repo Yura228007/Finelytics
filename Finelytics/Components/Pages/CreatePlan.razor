@@ -36,11 +36,11 @@
 </div>
 
 @code {
-    public Plan Plan { get; set; }
     [Parameter]
     [SupplyParameterFromQuery(Name = "user_id")]
     public int Id { get; set; } = -1;
 
+    public Plan Plan { get; set; }
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
@@ -48,6 +48,6 @@
     void Create()
     {
         PlansService.CurrentPlan = Plan;
-        Navigation.NavigateTo($"home?id={Id}&action={"create-plan"}");
+        Navigation.NavigateTo($"home?id={Id}&action={"create"}");
     }
 }

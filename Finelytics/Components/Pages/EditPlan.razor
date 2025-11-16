@@ -1,6 +1,8 @@
 ﻿@page "/edit-plan"
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
+@inject HttpClient Http
+@inject PlansService Service
 <link href="app.css" rel="stylesheet" />
 <div id="plan-form-page">
     <div class="plan-form-container">
@@ -43,15 +45,34 @@
         <button type="button" id="add-category-btn" class="btn-secondary">Добавить категорию</button>
 
         <div class="form-actions">
-            <button @onclick="@(() => RedirectToPage("edit-plan"))" class="btn-primary" id="save-plan-btn">Сохранить</button>
-            <button @onclick="@(() => RedirectToPage("home"))" class="btn-secondary" id="cancel-plan-form-btn">Отмена</button>
+            <button @onclick="@(() => Create())" class="btn-primary" id="save-plan-btn">Сохранить</button>
+            <button @onclick="@(() => RedirectToPage($"home?user_id={Id}"))" class="btn-secondary" id="cancel-plan-form-btn">Отмена</button>
         </div>
     </div>
 </div>
 
 @code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "user_id")]
+    public int Id { get; set; }
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "plan_id")]
+    public int PlanId { get; set; }
+
+    Plan planToEdit = new Plan();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        planToEdit = await Http.GetFromJsonAsync<Plan>($"api/plans/{PlanId}");
+    }
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
+    }
+    void Create()
+    {
+        Service.CurrentPlan = planToEdit;
+        Navigation.NavigateTo($"home?user_id={Id}action={"edit"}");
     }
 }

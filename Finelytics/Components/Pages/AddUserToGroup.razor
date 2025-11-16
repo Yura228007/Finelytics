@@ -1,0 +1,125 @@
+﻿@page "/add-user-to-group" // Принимает ID группы
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+@inject HttpClient Http
+@* @inject GroupsService GroupsService *@
+@inject UsersService UserService // Предполагается, что у вас есть сервис для работы с пользователями
+
+<link href="app.css" rel="stylesheet" />
+<div id="add-user-page">
+    <header class="page-header">
+        <button @onclick="GoBack" class="btn-back">← Назад</button>
+        <h1>Добавить пользователя в группу: @groupName</h1>
+    </header>
+
+    <main class="add-user-content">
+        <div class="search-container">
+            <input type="text" @bind="searchQuery" @bind:event="oninput" placeholder="Введите имя пользователя..." class="search-input" />
+            <button @onclick="SearchUsers" class="btn-primary">Поиск</button>
+        </div>
+
+        @if (!string.IsNullOrEmpty(searchQuery) && searchResults.Any())
+        {
+            <div class="search-results">
+                <h4>Найденные пользователи:</h4>
+                <ul>
+                    @foreach (var user in searchResults)
+                    {
+                        <li class="user-search-item">
+                            <span>@user.Nickname</span>
+                            <button @onclick="@(() => SendInvite(user.Id))" class="btn-send-invite">Отправить заявку</button>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
+        else if (!string.IsNullOrEmpty(searchQuery) && !searchResults.Any())
+        {
+            <p>Пользователи не найдены.</p>
+        }
+    </main>
+</div>
+
+@code {
+    [Parameter]
+    public int GroupId { get; set; }
+
+    private string searchQuery = "";
+    private List<User> searchResults = new List<User>();
+    private string groupName = "Загрузка...";
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Загрузить имя группы
+        var group = await GroupsService.GetGroupDetailsAsync(GroupId);
+        if (group != null)
+        {
+            groupName = group.Name;
+        }
+        else
+        {
+            groupName = "Группа не найдена";
+        }
+    }
+
+    private async Task SearchUsers()
+    {
+        if (!string.IsNullOrWhiteSpace(searchQuery))
+        {
+            // Ищем пользователей по имени. Предполагается, что UserService умеет это делать.
+            searchResults = await UserService.SearchUsersAsync(searchQuery);
+        }
+        else
+        {
+            searchResults.Clear();
+        }
+    }
+
+    private async Task SendInvite(int userId)
+    {
+        // Отправляем заявку на добавление пользователя в группу
+        // В реальной реализации здесь может быть отправка уведомления пользователю
+        // или добавление в таблицу "заявок" в БД.
+        // Также, нужно учесть, что пользователь может быть уже в группе.
+
+        var inviteResult = await GroupsService.SendGroupInviteAsync(GroupId, userId); // Ваш сервис должен обработать это
+
+        if (inviteResult.Success)
+        {
+            // Можно показать сообщение пользователю об успешной отправке заявки
+            Navigation.NavigateTo($"/add-user-to-group/{GroupId}"); // Можно обновить страницу или показать сообщение
+            // После добавления в БД, при логине пользователя будет появляться окно
+        }
+        else
+        {
+            // Показать сообщение об ошибке
+        }
+    }
+
+    private void GoBack()
+    {
+        Navigation.NavigateTo($"/my-groups");
+    }
+
+    // Примерные определения классов User и методы сервисов
+    public class User { public int Id { get; set; } public string Nickname { get; set; } }
+
+    // public class UserService
+    // {
+    //     public async Task<List<User>> SearchUsersAsync(string query) { ... }
+    // }
+
+    // public class GroupsService
+    // {
+    //     public async Task<Group> GetGroupDetailsAsync(int groupId) { ... }
+    //     public async Task<(bool Success, string Message)> SendGroupInviteAsync(int groupId, int userId)
+    //     {
+    //         // Здесь логика добавления пользователя в группу в БД
+    //         // и создание записи для ожидания подтверждения/отклонения.
+    //         // Для отправки заявки, предполагаем, что группа уже создана.
+    //         // User будет добавлен в группу, но с флагом "ожидает подтверждения".
+    //         // При первом логине этого пользователя, система проверит наличие таких заявок.
+    //         return (true, "Заявка отправлена.");
+    //     }
+    // }
+}

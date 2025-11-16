@@ -13,8 +13,8 @@ namespace finelytics.Models
         [DisplayName("Group Name")]
         public string Name { get; set; }
 
-        [DisplayName("Planned Amount")]
-        [DataType(DataType.Currency)]
-        public decimal PlannedAmmount { get; set; }
+        //[DisplayName("Planned Amount")]
+        //[DataType(DataType.Currency)]
+        //public decimal PlannedAmmount { get; set; } // вот это убираем потому что у группы план который вколючает в себя PlannedAmmount
     }
 }

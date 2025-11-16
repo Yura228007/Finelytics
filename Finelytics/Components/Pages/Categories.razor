@@ -2,7 +2,8 @@
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 @inject HttpClient Http
-@inject CategoriesService CategoryService
+@inject CategoriesService Service
+
 <link href="app.css" rel="stylesheet" />
 
 <div id="plan-details-page">
@@ -19,19 +20,20 @@
             <div class="category-detail-item">
                 <div class="category-info">
                     <label class="category-name" for="plan-name">Название категории:</label>
-                    <label class="category-name" id="category-name-display">c.Name</label>
+                    <label class="category-name" id="category-name-display">@c.Name</label>
 
                     <label class="category-budget" for="plan-budget">Бюджет:</label>
-                    <label class="category-budget" id="category-budget-display">c.PlannedAmmount</label>
+                    <label class="category-budget" id="category-budget-display">@c.PlannedAmmount</label>
 
                     <label class="category-spent" for="plan-spent">Потрачено:</label>
                     <label class="category-spent" id="category-spent-display">@categoriesTransactions[c.Id]</label>
                 </div>
             </div>
             <button class="btn-edit-category" data-category-id="" @onclick="@(() => RedirectToPage($"edit-category?id={Id}&plan_id={IdPlan}&category_id={c.Id}"))">Изменить категорию</button>
+            <button class="btn-edit-category" data-category-id="" @onclick="@(() => Del(c.Id))">Удалить категорию</button>
         }
 
-        <button @onclick="@(() => RedirectToPage("home"))" class="btn-secondary" id="back-to-main-btn">Назад</button>
+        <button @onclick="@(() => RedirectToPage($"home?user_id={Id}"))" class="btn-secondary" id="back-to-main-btn">Назад</button>
     </div>
 </div>
 
@@ -44,10 +46,32 @@
     [SupplyParameterFromQuery(Name="plan-id")]
     public int IdPlan {get; set;} = -1;
 
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "del_id")]
+    public int? DeleteCategoryId { get; set; } 
+
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "action")]
+    public string? Action { get; set; }
+
     public List<Category> categories = new List<Category>();
+
     public Dictionary<int,decimal> categoriesTransactions = new Dictionary<int,decimal>();
     protected override async Task OnParametersSetAsync()
     {
+        if(Action == "delete" && DeleteCategoryId != null)
+        {
+            await Http.DeleteAsync($"api/categories/{DeleteCategoryId}");
+            RedirectToPage($"plan-categories?user-id={Id}&plan-id={IdPlan}");
+        }
+        if(Action == "create")
+        {
+            await Http.PostAsJsonAsync<Category>("api/categories",Service.CurrentCategory);
+        }
+        if(Action == "edit")
+        {
+            await Http.PutAsJsonAsync<Category>($"api/categories/{Service.CurrentCategory.Id}", Service.CurrentCategory);
+        }
         List<PlanCategory>? planCategories = await Http.GetFromJsonAsync<List<PlanCategory>>("api/planscategories");
         List<Category>? cats = await Http.GetFromJsonAsync<List<Category>>("api/categories");
         List<Transaction>? trans = await Http.GetFromJsonAsync<List<Transaction>>("api/transactions");
@@ -70,6 +94,11 @@
             }
             categoriesTransactions.Add(ct.Id,temp_sum);
         }
+    }
+    public void Del(int id)
+    {
+        categories.RemoveAt(id-1);
+        RedirectToPage($"plan-categories?user-id={Id}&plan-id={IdPlan}&del_id={id}");
     }
     void RedirectToPage(string url)
     {

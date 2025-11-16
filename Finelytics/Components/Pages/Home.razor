@@ -10,6 +10,7 @@
         <div class="left-header-group">
             <div class="site-title">Планировщик расходов</div>
             <button @onclick="@(() => RedirectToPage($"create-plan?id={user.Id}"))" id="create-plan-btn" class="btn-primary switch-page-link">Создать план</button>
+            <button @onclick="@(() => RedirectToPage($"groups?user_id={Id}"))" id="my-groups-btn" class="btn-secondary switch-page-link">Ваши группы</button>
         </div>
 
         <div class="user-profile">
@@ -38,10 +39,9 @@
                         <td class="plan-status">@GetStringFormEnablePlan(p)</td>
                         <td class="plan-actions">
                             <button @onclick="@(() => RedirectToPage($"edit-plan?id={Id}&plan_id={p.Id}"))" class="btn-edit" data-plan-id="1">Редактировать</button>
-                            <button @onclick="@(() => RedirectToPage($"plan-categories?id={Id}&plan"))" class="btn-details" data-plan-id="1">Категории</button>
-                            @*добавь кнопку "транзакции"*@
+                            <button @onclick="@(() => RedirectToPage($"plan-categories?id={Id}&plan_id={p.Id}"))" class="btn-details" data-plan-id="1">Категории</button>
+                             <button @onclick="@(() => RedirectToPage($"transactions?id={Id}&plan_id={p.Id}"))" class="btn-details">Транзакции</button>
                             <button @onclick="@(() => DeletePlan(p.Id))" class="btn-close-plan" data-plan-id="1">Закрыть план</button>
-                            <button @onclick="@(() => RedirectToPage($"analythics?id={Id}"))" class="btn-analyze hidden" data-plan-id="1">Проанализировать</button>
                         </td>
                     </tr>
                     }
@@ -53,7 +53,7 @@
 
 @code {
     [Parameter]
-    [SupplyParameterFromQuery(Name = "id")]
+    [SupplyParameterFromQuery(Name = "user_id")]
     public int Id { get; set; } = -1;
 
     [Parameter]
@@ -82,9 +82,13 @@
                 Navigation.NavigateTo($"home?id={Id}");
             }
         }
-        if(Action == "create-plan")
+        if(Action == "create")
         {
             await Http.PostAsJsonAsync<Plan>("api/plans", PlansService.CurrentPlan);
+        }
+        if(Action == "edit")
+        {
+            await Http.PutAsJsonAsync<Plan>($"api/plans/{PlansService.CurrentPlan.Id}", PlansService.CurrentPlan);
         }
         user = await Http.GetFromJsonAsync<User>($"/api/users/{Id}");
         List<UserPlan> userPlans = await Http.GetFromJsonAsync<List<UserPlan>>("/api/usersplans");
