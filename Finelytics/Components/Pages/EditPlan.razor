@@ -72,7 +72,7 @@
     }
     void Create()
     {
-        Service.CurrentPlan = planToEdit;
+        PlansService.CurrentPlan = planToEdit;
         Navigation.NavigateTo($"home?user_id={Id}action={"edit"}");
     }
 }

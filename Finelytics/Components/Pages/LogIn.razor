@@ -35,7 +35,6 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Http.BaseAddress = new Uri("http://localhost:5169");
         if (Service.CurrentUser != null)
         {
             await Http.PostAsJsonAsync<User>("api/users",Service.CurrentUser);

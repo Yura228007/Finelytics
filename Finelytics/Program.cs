@@ -22,10 +22,15 @@ internal class Program
         //builder.Services.AddScoped<IUsersController, UsersController>();
         //builder.Services.AddScoped<IUsersGroupsController, UsersGroupsController>();
         //builder.Services.AddScoped<IUsersPlansController, UsersPlansController>();
-        builder.Services.AddHttpClient();
+        builder.Services.AddScoped(sp =>
+            new HttpClient
+            {
+                BaseAddress = new Uri("http://localhost:5169")
+            }
+        );
 
         builder.Services.AddScoped<UsersService>();
-        builder.Services.AddScoped<PlansService>();
+        builder.Services.AddSingleton<PlansService>();
         builder.Services.AddScoped<CategoriesService>();
         builder.Services.AddScoped<TransactionsService>();
 
@@ -35,7 +40,7 @@ internal class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
-        
+
         if (!app.Environment.IsDevelopment())
         {
             app.UseExceptionHandler("/Error", createScopeForErrors: true);
@@ -47,7 +52,7 @@ internal class Program
         app.MapRazorComponents<App>().AddInteractiveServerRenderMode();
         app.MapDefaultControllerRoute();
         app.Run();
-        }
+    }
 }
 
 

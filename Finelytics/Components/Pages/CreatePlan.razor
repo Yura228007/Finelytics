@@ -1,7 +1,8 @@
 ﻿@page "/create-plan"
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
-@inject PlansService PlansService
+@inject HttpClient Http
+@inject PlansService Service
 <link href="app.css" rel="stylesheet" />
 <div id="plan-form-page">
     <div class="plan-form-container">
@@ -10,7 +11,9 @@
 
         <div class="form-group">
             <label for="plan-name">Название плана:</label>
-            <input @bind-value="Plan.Name" type="text" id="plan-name" name="planName" required>
+            <input @bind-value="Plan.Name" type="text" id="plan-name" name="planName">
+            <label for="planned-amount">Название плана:</label>
+            <input @bind-value="Plan.PlannedAmmount" type="number" id="planned-amount" name="plannedAmount">
         </div>
 
         <div class="form-group date-range-picker">
@@ -18,11 +21,11 @@
             <div class="date-inputs">
                 <div>
                     <label for="plan-start-date">С:</label>
-                    <input @bind-value="Plan.StartDate" type="date" id="plan-start-date" name="planStartDate" required>
+                    <input @bind-value="Plan.StartDate" type="date" id="plan-start-date" name="planStartDate">
                 </div>
                 <div>
-                    <label for="plan-end-date">:</label>
-                    <input @bind-value="Plan.EndDate" type="date" id="plan-end-date" name="planEndDate" required>
+                    <label for="plan-end-date">До:</label>
+                    <input @bind-value="Plan.EndDate" type="date" id="plan-end-date" name="planEndDate" >
                 </div>
             </div>
         </div>
@@ -30,7 +33,7 @@
 
             <div class="form-actions">
                 <button @onclick="@(() => Create())" class="btn-primary" id="save-plan-btn">Создать</button>
-                <button @onclick="@(() => RedirectToPage($"home?id={Id}"))" class="btn-secondary" id="cancel-plan-form-btn">Отмена</button>
+            <button @onclick="@(() => RedirectToPage($"home?user_id={Id}"))" class="btn-primary">Отмена</button>
             </div>
     </div>
 </div>
@@ -38,16 +41,19 @@
 @code {
     [Parameter]
     [SupplyParameterFromQuery(Name = "user_id")]
-    public int Id { get; set; } = -1;
-
-    public Plan Plan { get; set; }
-    void RedirectToPage(string url)
+    public int Id { get; set; }
+    Plan Plan { get; set; } = new Plan();
+    // protected override async Task OnParametersSetAsync()
+    // {
+    //     await JSRuntime.InvokeVoidAsync("window.location.href", $"/home?user_id={Id}");
+    // }
+    public void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
     }
-    void Create()
+    public void Create()
     {
         PlansService.CurrentPlan = Plan;
-        Navigation.NavigateTo($"home?id={Id}&action={"create"}");
+        Navigation.NavigateTo($"home?user_id={Id}&action=create");
     }
 }

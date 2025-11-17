@@ -3,7 +3,7 @@ namespace finelytics
 {
     public class PlansService
     {
-        public Plan? CurrentPlan { get; set; }
+        public static Plan? CurrentPlan { get; set; }
         public PlansService() { }
     }
 }

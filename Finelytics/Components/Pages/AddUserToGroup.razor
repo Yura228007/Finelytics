@@ -51,15 +51,15 @@
     protected override async Task OnInitializedAsync()
     {
         // Загрузить имя группы
-        var group = await GroupsService.GetGroupDetailsAsync(GroupId);
-        if (group != null)
-        {
-            groupName = group.Name;
-        }
-        else
-        {
-            groupName = "Группа не найдена";
-        }
+        // var group = await GroupsService.GetGroupDetailsAsync(GroupId);
+        // if (group != null)
+        // {
+        //     groupName = group.Name;
+        // }
+        // else
+        // {
+        //     groupName = "Группа не найдена";
+        // }
     }
 
     private async Task SearchUsers()
@@ -67,7 +67,7 @@
         if (!string.IsNullOrWhiteSpace(searchQuery))
         {
             // Ищем пользователей по имени. Предполагается, что UserService умеет это делать.
-            searchResults = await UserService.SearchUsersAsync(searchQuery);
+            // searchResults = await UserService.SearchUsersAsync(searchQuery);
         }
         else
         {
@@ -82,18 +82,18 @@
         // или добавление в таблицу "заявок" в БД.
         // Также, нужно учесть, что пользователь может быть уже в группе.
 
-        var inviteResult = await GroupsService.SendGroupInviteAsync(GroupId, userId); // Ваш сервис должен обработать это
+        /* var inviteResult = await GroupsService.SendGroupInviteAsync(GroupId, userId); */ // Ваш сервис должен обработать это
 
-        if (inviteResult.Success)
-        {
-            // Можно показать сообщение пользователю об успешной отправке заявки
-            Navigation.NavigateTo($"/add-user-to-group/{GroupId}"); // Можно обновить страницу или показать сообщение
-            // После добавления в БД, при логине пользователя будет появляться окно
-        }
-        else
-        {
-            // Показать сообщение об ошибке
-        }
+        // if (inviteResult.Success)
+        // {
+        //     // Можно показать сообщение пользователю об успешной отправке заявки
+        //     Navigation.NavigateTo($"/add-user-to-group/{GroupId}"); // Можно обновить страницу или показать сообщение
+        //     // После добавления в БД, при логине пользователя будет появляться окно
+        // }
+        // else
+        // {
+        //     // Показать сообщение об ошибке
+        // }
     }
 
     private void GoBack()

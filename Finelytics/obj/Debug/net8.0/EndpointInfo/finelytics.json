@@ -1566,10 +1566,6 @@
             "maxLength": 100,
             "minLength": 0,
             "type": "string"
-          },
-          "plannedAmmount": {
-            "type": "number",
-            "format": "currency"
           }
         },
         "additionalProperties": false

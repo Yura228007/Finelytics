@@ -9,7 +9,7 @@
 <div id="group-plans-page">
     <header class="page-header">
         <button @onclick="@(() => RedirectToPage($"groups?user_id={Id}"))" class="btn-back">← Назад</button>
-        <h1>План группы: @groupName</h1>
+        <h1>План группы: </h1>
     </header>
 
     <main class="dashboard-content">
@@ -25,28 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if (groupPlans != null && groupPlans.Any())
-                    {
-                        @foreach (Plan p in groupPlans)
-                        {
-                            <tr class="plan-row" data-plan-id="@p.Id">
-                                <td class="plan-title">@p.Name</td>
-                                <td class="plan-date-range">@p.StartDate.ToString("dd.mm.yyyy") - @p.EndDate.ToString("dd.mm.yyyy")</td>
-                                <td class="plan-status">@GetStringFormEnablePlan(p)</td>
-                                <td class="plan-actions">
-                                    @* Здесь действия могут отличаться, например, редактирование может быть недоступно для всех *@
-                                    <button @onclick="@(() => ViewPlanCategories(p.Id))" class="btn-details" data-plan-id="1">Категории</button>
-                                    @* Кнопка "Закрыть план" или "Проанализировать" могут быть доступны только для создателя группы или администратора *@
-                                </td>
-                            </tr>
-                        }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="4">В этой группе пока нет планов.</td>
-                        </tr>
-                    }
+                    
                 </tbody>
             </table>
         </div>
@@ -61,6 +40,7 @@
     [Parameter]
     [SupplyParameterFromQuery(Name ="group_id")]
     public int GroupId { get; set; }
+
     void RedirectToPage(string url)
     {
         Navigation.NavigateTo(url);
