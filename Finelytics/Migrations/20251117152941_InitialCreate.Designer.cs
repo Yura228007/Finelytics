@@ -12,7 +12,7 @@ using finelytics.Domain;
 namespace finelytics.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251108145653_InitialCreate")]
+    [Migration("20251117152941_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -62,9 +62,6 @@ namespace finelytics.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal>("PlannedAmmount")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Groups");
@@ -78,12 +75,21 @@ namespace finelytics.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Period")
-                        .HasMaxLength(50)
+                    b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsEnable")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PlannedAmmount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -105,6 +111,10 @@ namespace finelytics.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("PlanId");
 
                     b.ToTable("PlansCategories");
                 });
@@ -180,6 +190,10 @@ namespace finelytics.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PlanId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("UserPlans");
                 });
 
@@ -199,7 +213,56 @@ namespace finelytics.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("UserId");
+
                     b.ToTable("UsersGroups");
+                });
+
+            modelBuilder.Entity("finelytics.Models.PlanCategory", b =>
+                {
+                    b.HasOne("finelytics.Models.Category", null)
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("finelytics.Models.Plan", null)
+                        .WithMany()
+                        .HasForeignKey("PlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("finelytics.Models.UserPlan", b =>
+                {
+                    b.HasOne("finelytics.Models.Plan", null)
+                        .WithMany()
+                        .HasForeignKey("PlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("finelytics.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("finelytics.Models.UsersGroup", b =>
+                {
+                    b.HasOne("finelytics.Models.Group", null)
+                        .WithMany()
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("finelytics.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

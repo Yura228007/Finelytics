@@ -59,9 +59,6 @@ namespace finelytics.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<decimal>("PlannedAmmount")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Groups");
