@@ -3,7 +3,7 @@ namespace finelytics
 {
     public class GroupsService
     {
-        public Group? CurrentGroup { get; set; }
+        public static Group? CurrentGroup { get; set; }
         public GroupsService() { }
     }
 }

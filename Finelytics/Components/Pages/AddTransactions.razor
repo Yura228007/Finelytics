@@ -1,51 +1,73 @@
-﻿@page "/transactions"
+﻿@page "/add_transaction"
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 @inject HttpClient Http
-@inject TransactionsService Service
 <link href="app.css" rel="stylesheet" />
-<div id="add-transaction-page" >
-        <div class="transaction-form-container">
-            <h2 id="add-transaction-title">Добавить запись</h2> 
-                <input type="hidden" id="transaction-plan-id"> 
-				<input type="hidden" id="transaction-category-id"> 
+<div id="add-transaction-page">
+	<div class="transaction-form-container">
+		<h2 id="add-transaction-title">Добавить запись</h2>
+		<input type="hidden" id="transaction-plan-id">
+		<input type="hidden" id="transaction-category-id">
+		<div class="form-group">
+			<label for="transaction-category-select">Категория:</label>
+			<select id="transaction-category-select" @bind="transaction.CategoryId" class="form-select">
+				<option value="" disabled selected>Выберите категорию</option>
+				@if (planCategories != null)
+				{
+					@foreach (var category in planCategories)
+					{
+						<option value="@category.Id">@category.Name</option>
+					}
+				}
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="transaction-amount">Сумма:</label>
+			<input @bind-value="transaction.PlannedAmmount" type="number" id="transaction-amount" name="transactionAmount" placeholder="0.00" required>
+		</div>
+		<div class="form-group">
+			<label for="transaction-comment">Комментарий:</label>
+			<input @bind-value="@transaction.Comment" id="transaction-comment" name="transactionComment" rows="3" placeholder="Например: Покупка продуктов"></input>
+		</div>
 
-                <div class="form-group">
-                    <label for="transaction-amount">Сумма:</label>
-                    <input @bind-value="transaction.PlannedAmmount" type="number" id="transaction-amount" name="transactionAmount" placeholder="0.00" required>
-                </div>
-                <div class="form-group">
-                    <label for="transaction-comment">Комментарий:</label>
-                    <input @bind-value="@transaction.Comment" id="transaction-comment" name="transactionComment" rows="3" placeholder="Например: Покупка продуктов"></input>
-                </div>
-
-                <div class="form-actions">
-                <button @onclick="@(() => AddTransaction())" class="btn-primary">Сохранить</button>
-                <button @onclick="@(() => RedirectToPage("home"))" class="btn-secondary" id="cancel-transaction-btn">Отмена</button>
-                </div>
-        </div>
-    </div>
+		<div class="form-actions">
+			<button @onclick="@(() => AddTransaction())" class="btn-primary">Сохранить</button>
+			<button @onclick="@(() => RedirectToPage($"transactions?user_id={Id}&plan_id={PlanId}"))" class="btn-secondary" id="cancel-transaction-btn">Отмена</button>
+		</div>
+	</div>
+</div>
 
 @code {
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "user_id")]
-    public int Id { get; set; } = -1;
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "user_id")]
+	public int Id { get; set; } = -1;
 
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "plan_id")]
-    public int PlanId { get; set; } = -1;
-    public Transaction transaction {get;set;} = new Transaction();
-    void RedirectToPage(string url)
-    {
-        Navigation.NavigateTo(url);
-    }
-    public void AddTransaction()
-    {
-        if(!string.IsNullOrEmpty(transaction.Comment) && transaction.PlannedAmmount != 0){
-            transaction.PlanId = Id;
-            // доделать, нужно чтобы был выбор категорий и у поля транзакции был ее id
-            Service.CurrentTransaction = transaction;
-            RedirectToPage($"transactions?id={Id}&plan_id={PlanId}&action={"create"}");
-        }
-    }
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "plan_id")]
+	public int PlanId { get; set; } = -1;
+
+	public Transaction transaction { get; set; } = new Transaction();
+	List<Category> planCategories { get; set; } = new List<Category>();
+	protected override async Task OnParametersSetAsync()
+	{
+		List<Category> allCats = await Http.GetFromJsonAsync<List<Category>>("api/categories");
+		List<PlanCategory> planCats = await Http.GetFromJsonAsync<List<PlanCategory>>("/api/planscategories");
+		List<int> planCatsId = planCats.Where(pc => pc.PlanId == PlanId).Select(pc => pc.CategoryId).ToList();
+		planCategories.Clear();
+		planCategories.AddRange(allCats.Where(c => planCatsId.Contains(c.Id)));
+	}
+	void RedirectToPage(string url)
+	{
+		Navigation.NavigateTo(url);
+	}
+	public void AddTransaction()
+	{
+		if (!string.IsNullOrEmpty(transaction.Comment) && transaction.PlannedAmmount != 0)
+		{
+			transaction.PlanId = Id;
+			transaction.CategoryId += 1;
+			TransactionsService.CurrentTransaction = transaction;
+			RedirectToPage($"transactions?user_id={Id}&plan_id={PlanId}&action=create");
+		}
+	}
 }

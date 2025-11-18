@@ -1,5 +1,50 @@
-﻿<h3>CreateGroup</h3>
+﻿@page "/create-group"
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+@inject HttpClient Http
+@inject GroupsService GroupsService // Предполагаем, что есть GroupsService
+
+<link href="app.css" rel="stylesheet" />
+
+<div id="create-group-page">
+    <header class="page-header">
+        <button @onclick="@(() => RedirectToPage($"groups?user_id={Id}"))" class="btn-back">← Назад</button>
+        <h1>Создание новой группы</h1>
+    </header>
+
+    <div class="group-form-container">
+        <div class="form-group">
+            <label class="group-name-label" for="group-name-input">Название группы:</label>
+            <input type="text" id="group-name-input" @bind="newGroup.Name" class="form-control" placeholder="Название группы" required />
+        </div>
+
+
+        <div class="form-actions">
+            <button class="btn-save-group" @onclick="@(() => Create())">Создать группу</button>
+        </div>
+    </div>
+</div>
 
 @code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "user_id")]
+    public int Id { get; set; } = -1;
+    private Group newGroup { get; set; } = new Group();
+    private void Create()
+    {
+        if (string.IsNullOrWhiteSpace(newGroup.Name))
+        {
+            GroupsService.CurrentGroup = newGroup;
+            Navigation.NavigateTo($"groups?user_id={Id}&action=create");
+        }
 
+    }
+
+    private void RedirectToPage(string url)
+    {
+        Navigation.NavigateTo(url);
+    }
+
+    
+    
 }

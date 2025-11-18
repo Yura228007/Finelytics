@@ -3,7 +3,7 @@ namespace finelytics
 {
     public class TransactionsService
     {
-        public Transaction? CurrentTransaction { get; set; }
+        public static Transaction? CurrentTransaction { get; set; }
         public TransactionsService() { }
     }
 }

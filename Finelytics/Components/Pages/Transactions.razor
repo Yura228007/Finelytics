@@ -2,114 +2,152 @@
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 @inject HttpClient Http
-@inject TransactionsService Service
 <link href="app.css" rel="stylesheet" />
 
 <div id="transactions-page">
-    <h2 id="transactions-title">Записи по плану</h2>
+	<h2 id="transactions-title">Записи по плану</h2>
 
-    @* Кнопка для добавления новой транзакции, передавая PlanId *@
-    <button @onclick="@(() => RedirectToPage($"add-transaction?id={PlanId}"))" class="btn-add-transaction">Добавить запись</button>
-    else if (!transactions.Any())
-    {
-        <p><em>Пока нет записей для этого плана.</em></p>
-    }
-    else
-    {
-        <table class="transactions-table">
-            <thead>
-                <tr>
-                    <th>Категория</th>
-                    <th>Сумма</th>
-                    <th>Комментарий</th>
-                    <th>Дата</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var t in transactions)
-                {
-                    <tr>
-                        <td>@transactionCategories[t.Id]</td>
-                        <td>@t.PlannedAmmount</td>
-                        <td>@t.Comment</td>
-                        <td>
-                        <button @onclick="@(() => RedirectToPage($"add-transaction?id={Id}&plan_id={PlanId}&transaction_id={t.Id}"))">Редактировать</button>
-                        <button @onclick="@(() => Del(t.Id))">Удалить</button>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
-    <button @onclick="@(() => RedirectToPage($"home?user_id={Id}"))" class="btn-secondary" id="back-to-main-btn">Назад</button>
+	<button @onclick="@(() => RedirectToPage($"add_transaction?user_id={Id}&plan_id={IdPlan}"))" class="btn-add-transaction">Добавить запись</button>
+	@if (!transactions.Any())
+	{
+		<p><em>Пока нет записей для этого плана.</em></p>
+	}
+	else
+	{
+		<table class="transactions-table">
+			<thead>
+				<tr>
+					<th>Категория</th>
+					<th>Сумма</th>
+					<th>Комментарий</th>
+					<th>Дата</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var t in transactions)
+				{
+					<tr>
+						<td>@transactionCategories[t.Id]</td>
+						<td>@t.PlannedAmmount</td>
+						<td>@t.Comment</td>
+						<td>
+							<button @onclick="@(() => RedirectToPage($"edit-transaction?user_id={Id}&plan_id={IdPlan}&transaction_id={t.Id}"))" class="btn-primary">Редактировать</button>
+							<button @onclick="@(() => DeleteTransaction(t.Id))" class="btn-primary">Удалить</button>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	}
+	<button @onclick="@(() => RedirectToPage($"home?user_id={Id}"))" class="btn-secondary" id="back-to-main-btn">Назад</button>
 </div>
 
 @code {
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "user_id")]
-    public int Id { get; set; } = -1;
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "user_id")]
+	public int Id { get; set; } = -1;
 
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "plan_id")]
-    public int PlanId { get; set; } = -1;
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "del_id")]
+	public int? DeleteTransactionId { get; set; } = null;
 
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "del_id")]
-    public int? DeleteTransactionId { get; set; }
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "action")]
+	public string? Action { get; set; }
 
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "action")]
-    public string? Action { get; set; }
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "plan_id")]
+	public int IdPlan { get; set; } = -1;
 
-    private List<Transaction> transactions;
-    private List<Category> categories;
+	public Dictionary<int, string> transactionCategories = new Dictionary<int, string>();
 
-    public Dictionary<int, Category> transactionCategories = new Dictionary<int, Category>();
+	public List<Transaction> transactions { get; set; } = new List<Transaction>();
+	public bool isInitialized { get; set; } = false;
+	public bool isProcess { get; set; } = false;
+	void RedirectToPage(string url)
+	{
+		Navigation.NavigateTo(url);
+	}
+	protected override void OnInitialized()
+	{
+		isInitialized = true;
+	}
+	protected override async Task OnParametersSetAsync()
+	{
+		if (isProcess) return;
+		if (Action != null)
+		{
+			var action = Action;
+			Action = null;
+			await Process(action);
+		}
+		else
+		{
+			await LoadTransactions();
+		}
+	}
+	public async Task Process(string action)
+	{
+		isProcess = true;
+		switch (action)
+		{
+			case "create":
+				if (TransactionsService.CurrentTransaction != null)
+				{
+					await Http.PostAsJsonAsync<Transaction>("api/transactions", TransactionsService.CurrentTransaction);
+					TransactionsService.CurrentTransaction = null;
+					await LoadTransactions();
+				}
+				break;
+			case "delete":
+				await Http.DeleteAsync($"/api/transactions/{DeleteTransactionId}");
+				await LoadTransactions();
+				break;
+			case "edit":
+				if (TransactionsService.CurrentTransaction != null)
+				{
+					await Http.PutAsJsonAsync<Transaction>($"api/transactions/{TransactionsService.CurrentTransaction.Id}", TransactionsService.CurrentTransaction);
+					TransactionsService.CurrentTransaction = null;
+					await LoadTransactions();
+				}
+				break;
+		}
+		ClearProcessParams();
+		isProcess = false;
+	}
+	public async Task LoadTransactions()
+	{
+		List<Transaction> allTrans = await Http.GetFromJsonAsync<List<Transaction>>("api/transactions");
+		List<Category> cats = await Http.GetFromJsonAsync<List<Category>>("api/categories");
+		//заоплняем категории для отображения
+		transactions.Clear();
+		transactions = allTrans.Where(t => t.PlanId == IdPlan).ToList();
+		if(transactions.Count>0)
+		{
+			foreach (Category c in cats)
+			{
+				if (transactions.Last().CategoryId == c.Id)
+				{
+					if (!transactionCategories.ContainsKey(transactions.Last().Id))
+					{
+						transactionCategories.Add(transactions.Last().Id, c.Name);
+					}
+				}
+			}
+		}
 
-    void RedirectToPage(string url)
-    {
-        Navigation.NavigateTo(url);
-    }
+	}
 
+	public void DeleteTransaction(int id)
+	{
+		transactions.Remove(transactions.ElementAt(id - 1));// ElementAt(Id-1)
+		Navigation.NavigateTo($"transactions?user_id={Id}&plan_id={IdPlan}&del_id={id}&action=delete");
+	}
+	public void ClearProcessParams()
+	{
+		Action = null;
+		DeleteTransactionId = null;
+		Navigation.NavigateTo($"transactions?user_id={Id}&plan_id={IdPlan}", replace: true);
+	}
 
-    protected override async Task OnParametersSetAsync()
-    {
-        if(Action == "delete" && DeleteTransactionId != null)
-        {
-            await Http.DeleteAsync($"api/transactions/{DeleteTransactionId}");
-            RedirectToPage($"transactions?id={Id}&plan_id={PlanId}");
-        }
-        if(Action == "create")
-        {
-            await Http.PostAsJsonAsync<Transaction>("api/transactions",Service.CurrentTransaction);
-        }
-        if(Action == "edit")
-        {
-            await Http.PutAsJsonAsync<Transaction>($"api/transactions/{Service.CurrentTransaction.Id}", Service.CurrentTransaction);
-        }
-        List<Transaction> trans = await Http.GetFromJsonAsync<List<Transaction>>("api/transactions");    
-        categories = await Http.GetFromJsonAsync<List<Category>>("api/categories");
-        foreach(Transaction t in trans)
-        {
-            if(t.PlanId == PlanId)
-            {
-                transactions.Add(t);
-            }
-        }
-        foreach(Transaction t in trans)
-        {
-            foreach(Category c in categories)
-            {
-                if(t.CategoryId == c.Id)
-                {
-                    transactionCategories.Add(t.Id,c);
-                }
-            }
-        }
-    }
-    public void Del(int id)
-    {
-        transactions.RemoveAt(id - 1);
-        RedirectToPage($"transactions?id={Id}&plan_id={PlanId}&del_id={id}");
-    }
 }

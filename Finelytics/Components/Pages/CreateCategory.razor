@@ -2,18 +2,23 @@
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 @inject HttpClient Http
-@inject CategoriesService Service
 <link href="app.css" rel="stylesheet" />
 
 <div id="add-category-page">
     <div class="add-category-container">
-        <h2 id="add-category-title">Редактирование категории</h2>
+        <h2 id="add-category-title">Редактирование категориsи</h2>
 
             <div class="category-form">
                 <div class="form-group">
                     <label class="category-name-label" for="category-name-input">Название категории:</label>
                     <input type="text" id="category-name-input" @bind="category.Name" class="form-control" required />
                 </div>
+                <div class="form-group"> <label class="category-type-label" for="category-type-select">Тип категории:</label> 
+                    <select id="category-type-select" @bind="category.IsIncome" class="form-select"> 
+                        <option value="@false">Расход</option> 
+                        <option value="@true">Доход</option> 
+                    </select>
+                    </div>
 
                 <div class="form-group">
                     <label class="category-budget-label" for="category-budget-input">Бюджет:</label>
@@ -21,8 +26,8 @@
                 </div>
 
                 <div class="form-actions">
-                    <button class="btn-save-category" @onclick="@(() => Create())">Создать</button>
-                <button class="btn-cancel-edit" @onclick="@(() => RedirectToPage($"categories?user_id={Id}&plan_id={PlanId}"))">Отмена</button>
+                    <button class="btn-secondary" @onclick="@(() => Create())">Создать</button>
+                <button class="btn-secondary" @onclick="@(() => RedirectToPage($"categories?user_id={Id}&plan_id={PlanId}"))">Отмена</button>
                 </div>
             </div>
     </div>
@@ -41,12 +46,12 @@
 
 
 
-    private async Task Create()
+    private void Create()
     {
         if (category != null)
         {
-            Service.CurrentCategory = category;
-            Navigation.NavigateTo($"plan-categories?user_id={Id}&plan_id={PlanId}&action={"create"}");
+            CategoriesService.CurrentCategory = category;
+            Navigation.NavigateTo($"plan-categories?user_id={Id}&plan_id={PlanId}&action=create");
         }
     }
 

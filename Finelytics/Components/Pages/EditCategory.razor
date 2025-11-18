@@ -1,8 +1,7 @@
-@page "/edit-categoryS"
+@page "/edit-category"
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 @inject HttpClient Http
-@inject CategoriesService Service
 <link href="app.css" rel="stylesheet" />
 
 <div id="edit-category-page">
@@ -20,8 +19,8 @@
                 </div>
 
                 <div class="form-actions">
-                    <button class="btn-save-category" @onclick="@(() => Edit())">Сохранить</button>
-                    <button class="btn-cancel-edit" @onclick="@(() => RedirectToPage($"categories?user_id={Id}&plan_id={PlanId}"))">Отмена</button>
+                    <button class="btn-primary" @onclick="@(() => Edit())">Сохранить</button>
+                    <button class="btn-primary" @onclick="@(() => RedirectToPage($"plan-categories?user_id={Id}&plan_id={PlanId}"))">Отмена</button>
                 </div>
             </div>
     </div>
@@ -41,18 +40,24 @@
     public int CategoryId { get; set; }
 
     private Category categoryToEdit = new Category();
-
+    private bool isRedirect { get; set; } = false;
     protected override async Task OnParametersSetAsync()
     {
-        categoryToEdit = await Http.GetFromJsonAsync<Category>($"api/categories/{CategoryId}");
+        if(!isRedirect)
+        {
+            categoryToEdit = await Http.GetFromJsonAsync<Category>($"api/categories/{CategoryId}");
+        }
+
     }
     void RedirectToPage(string url)
     {
+        isRedirect = true;
         Navigation.NavigateTo(url);
     }
     void Edit()
     {
-        Service.CurrentCategory = categoryToEdit;
-        Navigation.NavigateTo($"categories?user_id={Id}&plan_id={PlanId}&action={"edit"}");
+        CategoriesService.CurrentCategory = categoryToEdit;
+        isRedirect = true;
+        Navigation.NavigateTo($"plan-categories?user_id={Id}&plan_id={PlanId}&action=edit");
     }
 }

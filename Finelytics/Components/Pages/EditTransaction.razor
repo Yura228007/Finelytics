@@ -2,7 +2,6 @@
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 @inject HttpClient Http
-@inject TransactionsService Service
 <link href="app.css" rel="stylesheet" />
 <div id="add-transaction-page">
     <div class="transaction-form-container">
@@ -42,12 +41,17 @@
     public int TransactionId { get; set; } = -1;
 
     public Transaction transaction { get; set; } = new Transaction();
+    public bool isRedirect { get; set; } = false;
     protected override async Task OnParametersSetAsync()
     {
-        transaction = await Http.GetFromJsonAsync<Transaction>($"api/transactions/{TransactionId}");
+        if(!isRedirect)
+        {
+            transaction = await Http.GetFromJsonAsync<Transaction>($"api/transactions/{TransactionId}");
+        }
     }
     void RedirectToPage(string url)
     {
+        isRedirect = true;
         Navigation.NavigateTo(url);
     }
     public void Edit()
@@ -55,9 +59,10 @@
         if (!string.IsNullOrEmpty(transaction.Comment) && transaction.PlannedAmmount != 0)
         {
             transaction.PlanId = Id;
-            Service.CurrentTransaction = transaction;
+            TransactionsService.CurrentTransaction = transaction;
+            isRedirect = true;
             // доделать, нужно чтобы был выбор категорий и у поля транзакции был ее id
-            Navigation.NavigateTo($"transactions?user_id={Id}&plan_id={PlanId}&action={"edit"}");
+            Navigation.NavigateTo($"transactions?user_id={Id}&plan_id={PlanId}&action=edit");
         }
     }
 }

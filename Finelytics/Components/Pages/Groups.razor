@@ -2,20 +2,18 @@
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 @inject HttpClient Http
-@inject GroupsService Service 
 
 <link href="app.css" rel="stylesheet" />
 <div id="my-groups-page">
     <header class="page-header">
         <button @onclick="@(() => RedirectToPage($"home?user_id={Id}"))" class="btn-back">← Назад</button>
-        <button @onclick="@(() => RedirectToPage($"create-group?user_id={Id}"))" class="btn-primary">Добавить группу</button>
         <h1>Ваши группы</h1>
     </header>
 
     <main class="groups-content">
-        @if (userGroups != null && userGroups.Any())
+        @if (groups != null && groups.Any())
         {
-            @foreach (var group in userGroups)
+            @foreach (var group in groups)
             {
                 <div class="group-card">
                     <h3>@group.Name</h3>
@@ -24,7 +22,7 @@
                         <ul>
                             @foreach (var user in members[group.Id])
                             {
-                                <li>@user.Nickname     <button @onclick="@(() => DelUserFromGroup(user.Id))" class="btn-secondary">Удалить из группы</button></li>
+                               @*  <li>@user.Nickname     <button @onclick="@(() => DelUserFromGroup(user.Id))" class="btn-secondary">Удалить из группы</button></li> *@
                             }
                         </ul>
                     </div>
@@ -39,85 +37,112 @@
         else
         {
             <p>У вас пока нет групп.</p>
-            <button @onclick="@(() => RedirectToPage(""))" class="btn-primary">Cоздать группу</button>
+			<button @onclick="@(() => RedirectToPage($"create-group?user_id={Id}"))" class="btn-primary">Создать группу</button>
         }
     </main>
 </div>
 
 @code {
-    [Parameter]
-    [SupplyParameterFromQuery(Name ="user_id")]
-    public int Id { get; set; }
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "user_id")]
+	public int Id { get; set; } = -1;
 
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "action")]
-    public string? Action { get; set; }
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "del_id")]
+	public int? DeleteGroupId { get; set; } = null;
 
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "del_id")]
-    public int? DeleteUserId { get; set; }
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "action")]
+	public string? Action { get; set; }
 
-    public List<Group> userGroups { get; set; }
+	public List<Group> groups { get; set; } = new List<Group>();
+	Dictionary<int, List<User>> members = new Dictionary<int, List<User>>();
+	public bool isInitialized { get; set; } = false;
+	public bool isProcess { get; set; } = false;
+	void RedirectToPage(string url)
+	{
+		Navigation.NavigateTo(url);
+	}
+	protected override void OnInitialized()
+	{
+		isInitialized = true;
+	}
+	protected override async Task OnParametersSetAsync()
+	{
+		if (isProcess) return;
+		if (Action != null)
+		{
+			var action = Action;
+			Action = null;
+			await Process(action);
+		}
+		else
+		{
+			await LoadGroups();
+		}
+	}
+	public async Task Process(string action)
+	{
+		isProcess = true;
+		switch (action)
+		{
+			case "create":
+				if (GroupsService.CurrentGroup != null)
+				{
+					await Http.PostAsJsonAsync<Group>("api/groups", GroupsService.CurrentGroup);
+					List<Group> grs = await Http.GetFromJsonAsync<List<Group>>("api/groups");
+					UsersGroup ug = new UsersGroup();
+					ug.UserId = Id;
+					ug.GroupId = grs.Last().Id;
+					await Http.PostAsJsonAsync<UsersGroup>("usersgroups",ug);
+					GroupsService.CurrentGroup = null;
+					await LoadGroups();
+				}
+				break;
+			case "delete_user":
+				await Http.DeleteAsync($"/api/groups/{DeleteGroupId}");
+				await LoadGroups();
+				break;
+			case "edit":
+				if (GroupsService.CurrentGroup != null)
+				{
+					await Http.PutAsJsonAsync<Group>("api/groups", GroupsService.CurrentGroup);
+					GroupsService.CurrentGroup = null;
+					await LoadGroups();
+				}
+				break;
+		}
+		ClearProcessParams();
+		isProcess = false;
+	}
+	public async Task LoadGroups()
+	{
+		List<Group> allGroups = await Http.GetFromJsonAsync<List<Group>>("api/groups");
+		List<UsersGroup> allUsersGroups = await Http.GetFromJsonAsync<List<UsersGroup>>("api/usersgroups");
+		List<User> allUsers = await Http.GetFromJsonAsync<List<User>>("api/users");
+		List<UsersGroup> userGroups = allUsersGroups.Where(ug => ug.UserId == Id).ToList();
+		List<int> userGroupsId = allUsersGroups.Where(ug => ug.UserId == Id).Select(ug => ug.GroupId).ToList();
+		groups.Clear();
+		groups = allGroups.Where(g => userGroupsId.Contains(g.Id)).ToList();
+		foreach(UsersGroup ug in userGroups)
+		{
+			List<User> temp = new List<User>();
+			foreach(User u in allUsers)
+			{
+				if(ug.UserId == u.Id)
+				{
+					temp.Add(u);
+				}
+			}
+			members.Add(ug.GroupId, temp);
+		}
 
-    Dictionary<int, List<User>> members = new Dictionary<int, List<User>>();
+	}
+	public void ClearProcessParams()
+	{
+		Action = null;
+		DeleteGroupId = null;
+		Navigation.NavigateTo($"transactions?user_id={Id}", replace: true);
+	}
 
-    protected override async Task OnParametersSetAsync()
-    {
-        if(Action == "delete_user" && DeleteUserId!=null)
-        {
-            await Http.DeleteAsync($"api/usersgroups/{DeleteUserId}");
-        }
-        if(Action == "edit")
-        {
-            await Http.PutAsJsonAsync<Group>($"api/groups/{Service.CurrentGroup.Id}",Service.CurrentGroup);
-        }
-        if(Action == "create")
-        {
-            await Http.PostAsJsonAsync<Group>($"api/groups", Service.CurrentGroup);
-        }
-        List<User> users = await Http.GetFromJsonAsync<List<User>>("api/users");
-        List<Group> groups = await Http.GetFromJsonAsync<List<Group>>("api/groups");
-        List<UsersGroup> usersGroups = await Http.GetFromJsonAsync<List<UsersGroup>>("api/usersgroups");
-        List<Group> cur_groups = new List<Group>();
-        foreach(var ug in usersGroups)
-        {
-            if(ug.UserId == Id)
-            {
-                foreach(var g in groups)
-                {
-                    if(ug.GroupId == g.Id)
-                    {
-                        userGroups.Add(g);
-                    }
-                }
-            }
-        }
-        foreach(var g in userGroups)
-        {
-            List<User> temp = new();
-            foreach(var ug in usersGroups)
-            {
-                if(g.Id == ug.GroupId)
-                {
-                    foreach(var u in users)
-                    {
-                        if(ug.UserId == u.Id)
-                        {
-                            temp.Add(u);
-                        }
-                    }
-                }
-            }
-            members.Add(g.Id, temp);
-        }
-    }
-
-    void RedirectToPage(string url)
-    {
-        Navigation.NavigateTo(url);
-    }
-    void DelUserFromGroup(int id)
-    {
-        
-    }
 }

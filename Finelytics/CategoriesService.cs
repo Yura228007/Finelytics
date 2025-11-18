@@ -3,7 +3,7 @@ namespace finelytics
 {
     public class CategoriesService
     {
-        public Category? CurrentCategory { get; set; }
+        public static Category? CurrentCategory { get; set; }
         public CategoriesService() { }
     }
 }

@@ -38,9 +38,9 @@
 							<td class="plan-date-range">@p.StartDate.ToString("dd.mm.yyyy") - @p.EndDate.ToString("dd.mm.yyyy")</td>
 							<td class="plan-status">@GetStringFormEnablePlan(p)</td>
 							<td class="plan-actions">
-								<button @onclick="@(() => RedirectToPage($"edit-plan?id={Id}&plan_id={p.Id}"))" class="btn-edit" data-plan-id="1">Редактировать</button>
-								<button @onclick="@(() => RedirectToPage($"plan-categories?id={Id}&plan_id={p.Id}"))" class="btn-details" data-plan-id="1">Категории</button>
-								<button @onclick="@(() => RedirectToPage($"transactions?id={Id}&plan_id={p.Id}"))" class="btn-details">Транзакции</button>
+								<button @onclick="@(() => RedirectToPage($"edit-plan?user_id={Id}&plan_id={p.Id}"))" class="btn-edit" data-plan-id="1">Редактировать</button>
+								<button @onclick="@(() => RedirectToPage($"plan-categories?user_id={Id}&plan_id={p.Id}"))" class="btn-details" data-plan-id="1">Категории</button>
+								<button @onclick="@(() => RedirectToPage($"transactions?user_id={Id}&plan_id={p.Id}"))" class="btn-details">Транзакции</button>
 								<button @onclick="@(() => DeletePlan(p.Id))" class="btn-close-plan" data-plan-id="1">Закрыть план</button>
 							</td>
 						</tr>
@@ -159,7 +159,7 @@
 	}
 	public void DeletePlan(int id)
 	{
-		plans.Remove(plans.ElementAt(id - 10));// ElementAt(Id-1)
+		plans.Remove(plans.ElementAt(id - 1));// ElementAt(Id-1)
 		Navigation.NavigateTo($"home?id={Id}&del_id={id}&action=delete");
 	}
 	public void ClearProcessParams()

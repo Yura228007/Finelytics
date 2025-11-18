@@ -32,8 +32,8 @@ internal class Program
 
         builder.Services.AddScoped<UsersService>();
         builder.Services.AddSingleton<PlansService>();
-        builder.Services.AddScoped<CategoriesService>();
-        builder.Services.AddScoped<TransactionsService>();
+        builder.Services.AddSingleton<CategoriesService>();
+        builder.Services.AddSingleton<TransactionsService>();
 
         var app = builder.Build();
         if (app.Environment.IsDevelopment())
