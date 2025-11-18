@@ -94,14 +94,17 @@
 		switch (Action)
 		{
 			case "create":
-				await Http.PostAsJsonAsync<Plan>("api/plans", PlansService.CurrentPlan);
-				List<Plan> pls = await Http.GetFromJsonAsync<List<Plan>>("api/plans");
-				UserPlan? userPlan = new UserPlan();
-				userPlan.UserId = Id;
-				userPlan.PlanId = pls.Last().Id;
-				await Http.PostAsJsonAsync<UserPlan>("api/usersplans", userPlan);
-				PlansService.CurrentPlan = null;
-				await LoadUser();
+				if(PlansService.CurrentPlan != null)
+				{
+					await Http.PostAsJsonAsync<Plan>("api/plans", PlansService.CurrentPlan);
+					List<Plan> pls = await Http.GetFromJsonAsync<List<Plan>>("api/plans");
+					UserPlan? userPlan = new UserPlan();
+					userPlan.UserId = Id;
+					userPlan.PlanId = pls[pls.Count - 1].Id;
+					await Http.PostAsJsonAsync<UserPlan>("api/usersplans", userPlan);
+					PlansService.CurrentPlan = null;
+					await LoadUser();
+				}
 				break;
 			case "delete":
 				await Http.DeleteAsync($"/api/plans/{DeletePlanId}");

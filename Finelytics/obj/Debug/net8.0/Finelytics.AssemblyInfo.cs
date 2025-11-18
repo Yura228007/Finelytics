@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("finelytics")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dda52ac595d0dbc54615da3475473bec9faa59a3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b98a00426f53ca7c321773a3e3a56b02344afeb")]
 [assembly: System.Reflection.AssemblyProductAttribute("finelytics")]
 [assembly: System.Reflection.AssemblyTitleAttribute("finelytics")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

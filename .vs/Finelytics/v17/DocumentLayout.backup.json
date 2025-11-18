@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|c:\\users\\administrator\\documents\\github\\finelytics\\finelytics\\components\\pages\\categories.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{87EDC895-C4C8-4BF3-BBFE-45CD3ED4B247}|finelytics\\finelytics.csproj|solutionrelative:finelytics\\components\\pages\\categories.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
@@ -19,12 +23,25 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Home.razor",
+              "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Home.razor",
+              "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\Home.razor",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Home.razor",
+              "RelativeToolTip": "Finelytics\\Components\\Pages\\Home.razor",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAAAGkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-18T08:14:57.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Categories.razor",
               "DocumentMoniker": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Categories.razor",
               "RelativeDocumentMoniker": "Finelytics\\Components\\Pages\\Categories.razor",
-              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Categories.razor*",
-              "RelativeToolTip": "Finelytics\\Components\\Pages\\Categories.razor*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAJAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Administrator\\Documents\\GitHub\\Finelytics\\Finelytics\\Components\\Pages\\Categories.razor",
+              "RelativeToolTip": "Finelytics\\Components\\Pages\\Categories.razor",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAA0AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-18T07:41:35.286Z",
               "EditorCaption": ""
