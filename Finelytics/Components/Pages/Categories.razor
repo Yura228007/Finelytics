@@ -5,7 +5,7 @@
 @inject CategoriesService Service
 
 <link href="app.css" rel="stylesheet" />
-
+@* 
 <div id="plan-details-page">
     <div class="plan-details-container">
         <h2 id="details-plan-title"></h2>
@@ -35,74 +35,121 @@
 
         <button @onclick="@(() => RedirectToPage($"home?user_id={Id}"))" class="btn-secondary" id="back-to-main-btn">Назад</button>
     </div>
-</div>
+</div> *@
 
 @code {
-    [Parameter]
-    [SupplyParameterFromQuery(Name="user-id")]
-    public int Id {get; set;} = -1;
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "user_id")]
+	public int Id { get; set; } = -1;
 
-    [Parameter]
-    [SupplyParameterFromQuery(Name="plan-id")]
-    public int IdPlan {get; set;} = -1;
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "del_id")]
+	public int? DeletePlanId { get; set; } = null;
 
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "del_id")]
-    public int? DeleteCategoryId { get; set; } 
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "action")]
+	public string? Action { get; set; }
 
-    [Parameter]
-    [SupplyParameterFromQuery(Name = "action")]
-    public string? Action { get; set; }
+	[Parameter]
+	[SupplyParameterFromQuery(Name = "plan-id")]
+	public int IdPlan { get; set; } = -1;
 
-    public List<Category> categories = new List<Category>();
+	public User user { get; set; } = new User();
+	public List<Plan> plans { get; set; } = new List<Plan>();
+	public bool isInitialized { get; set; } = false;
+	public bool isProcess { get; set; } = false;
+	void RedirectToPage(string url)
+	{
+		Navigation.NavigateTo(url);
+	}
+	protected override void OnInitialized()
+	{
+		isInitialized = true;
+	}
+	protected override async Task OnParametersSetAsync()
+	{
+		if (!isInitialized || isProcess) return;
+		if(Action != null)
+		{
+			await Process();
+		}
+		else
+		{
+			await LoadCategories();
+		}
+	}
+	public async Task Process()
+	{
+		isProcess = true;
+		switch (Action)
+		{
+			case "create":
+				await Http.PostAsJsonAsync<Plan>("api/plans", PlansService.CurrentPlan);
+				List<Plan> pls = await Http.GetFromJsonAsync<List<Plan>>("api/plans");
+				UserPlan? userPlan = new UserPlan();
+				userPlan.UserId = Id;
+				userPlan.PlanId = pls.Last().Id;
+				await Http.PostAsJsonAsync<UserPlan>("api/usersplans", userPlan);
+				PlansService.CurrentPlan = null;
+				await LoadCategories();
+				break;
+			case "delete":
+				await Http.DeleteAsync($"/api/plans/{DeletePlanId}");
+				List<Transaction> planTransactions = new();
+				List<Transaction> transactions = await Http.GetFromJsonAsync<List<Transaction>>("api/transactions");
+				foreach (var tr in transactions)
+				{
+					if (tr.PlanId == DeletePlanId)
+					{
+						planTransactions.Add(tr);
+					}
+				}
+				foreach (var t in planTransactions)
+				{
+					await Http.DeleteAsync($"api/transactions/{t.Id}");
+				}
+				await LoadCategories();
+				break;
+			case "edit":
+				await Http.PutAsJsonAsync<Plan>($"api/plans/{PlansService.CurrentPlan.Id}", PlansService.CurrentPlan);
+				PlansService.CurrentPlan = null;
+				await LoadCategories();
+				break;
+		}
+		ClearProcessParams();
+		isProcess = false;
+	}
+	public async Task LoadCategories()
+	{
+		List<Plan> allPlans = await Http.GetFromJsonAsync<List<Plan>>("api/plans");
+		List<UserPlan> userPlans = await Http.GetFromJsonAsync<List<UserPlan>>("/api/usersplans");
+		List<int> userPlansId = userPlans.Where(up => up.UserId == Id).Select(up => up.PlanId).ToList();
+		plans.Clear();
+		plans.AddRange(allPlans.Where(p => userPlansId.Contains(p.Id)));
+	}
 
-    public Dictionary<int,decimal> categoriesTransactions = new Dictionary<int,decimal>();
-    protected override async Task OnParametersSetAsync()
-    {
-        if(Action == "delete" && DeleteCategoryId != null)
-        {
-            await Http.DeleteAsync($"api/categories/{DeleteCategoryId}");
-            RedirectToPage($"plan-categories?user-id={Id}&plan-id={IdPlan}");
-        }
-        if(Action == "create")
-        {
-            await Http.PostAsJsonAsync<Category>("api/categories",Service.CurrentCategory);
-        }
-        if(Action == "edit")
-        {
-            await Http.PutAsJsonAsync<Category>($"api/categories/{Service.CurrentCategory.Id}", Service.CurrentCategory);
-        }
-        List<PlanCategory>? planCategories = await Http.GetFromJsonAsync<List<PlanCategory>>("api/planscategories");
-        List<Category>? cats = await Http.GetFromJsonAsync<List<Category>>("api/categories");
-        List<Transaction>? trans = await Http.GetFromJsonAsync<List<Transaction>>("api/transactions");
-        foreach(PlanCategory pc in planCategories)
-        {
-            if(pc.PlanId == IdPlan)
-            {
-                categories.Add(cats.ElementAt(pc.CategoryId-1));
-            }
-        }
-        foreach(Category ct in categories)
-        {
-            decimal temp_sum = 0;
-            foreach(Transaction t in trans)
-            {        
-                if(t.CategoryId == ct.Id)
-                {
-                    temp_sum += t.PlannedAmmount;
-                }
-            }
-            categoriesTransactions.Add(ct.Id,temp_sum);
-        }
-    }
-    public void Del(int id)
-    {
-        categories.RemoveAt(id-1);
-        RedirectToPage($"plan-categories?user-id={Id}&plan-id={IdPlan}&del_id={id}");
-    }
-    void RedirectToPage(string url)
-    {
-        Navigation.NavigateTo(url);
-    }
+	public string GetStringFormEnablePlan(Plan plan)
+	{
+		if (plan.IsEnable)
+		{
+			return "???????";
+		}
+		else
+		{
+			return "?????????";
+		}
+	}
+	public void DeleteCategory(int id)
+	{
+		plans.Remove(plans.ElementAt(id - 10));// ElementAt(Id-1)
+		Navigation.NavigateTo($"home?id={Id}&del_id={id}&action=delete");
+	}
+	public void ClearProcessParams()
+	{
+		Action = null;
+		DeletePlanId = null;
+		Navigation.NavigateTo($"home?user_id={Id}",replace:true);
+	}
 
 }
+

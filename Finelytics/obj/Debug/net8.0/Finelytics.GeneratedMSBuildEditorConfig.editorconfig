@@ -17,93 +17,93 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = finelytics
 build_property.RootNamespace = finelytics
-build_property.ProjectDir = C:\Finelytics\Finelytics\finelytics\
+build_property.ProjectDir = C:\Users\Administrator\Documents\GitHub\Finelytics\finelytics\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Finelytics\Finelytics\finelytics
+build_property.MSBuildProjectDirectory = C:\Users\Administrator\Documents\GitHub\Finelytics\finelytics
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/App.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/App.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Layout/MainLayout.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcTWFpbkxheW91dC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/AddTransactions.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/AddTransactions.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZGRUcmFuc2FjdGlvbnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/AddUserToGroup.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/AddUserToGroup.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xBZGRVc2VyVG9Hcm91cC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/Categories.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/Categories.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDYXRlZ29yaWVzLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/CreateCategory.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/CreateCategory.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDcmVhdGVDYXRlZ29yeS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/CreateGroup.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/CreateGroup.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDcmVhdGVHcm91cC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/CreatePlan.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/CreatePlan.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDcmVhdGVQbGFuLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/EditCategory.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/EditCategory.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFZGl0Q2F0ZWdvcnkucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/EditGroup.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/EditGroup.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFZGl0R3JvdXAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/EditPlan.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/EditPlan.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFZGl0UGxhbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/EditTransaction.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/EditTransaction.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFZGl0VHJhbnNhY3Rpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/GroupPlan.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/GroupPlan.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xHcm91cFBsYW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/Groups.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/Groups.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xHcm91cHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/Home.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/LogIn.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/LogIn.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb2dJbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/Registration.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/Registration.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xSZWdpc3RyYXRpb24ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Pages/Transactions.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Pages/Transactions.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xUcmFuc2FjdGlvbnMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/Routes.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/Routes.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xSb3V0ZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Finelytics/Finelytics/finelytics/Components/_Imports.razor]
+[C:/Users/Administrator/Documents/GitHub/Finelytics/finelytics/Components/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xfSW1wb3J0cy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
