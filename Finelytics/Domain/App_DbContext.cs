@@ -16,6 +16,7 @@ namespace finelytics.Domain
         public DbSet<User> Users { get; set; }
         public DbSet<UserPlan> UserPlans { get; set; }
         public DbSet<UsersGroup> UsersGroups { get; set; }
+        public DbSet<GroupPlans> GroupPlans { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -56,6 +57,18 @@ namespace finelytics.Domain
                 .HasOne<Group>()
                 .WithMany()
                 .HasForeignKey(ug => ug.GroupId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<GroupPlans>()
+                .HasOne<Plan>()
+                .WithMany()
+                .HasForeignKey(gp => gp.PlanId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<GroupPlans>()
+                .HasOne<Group>()
+                .WithMany()
+                .HasForeignKey(gp => gp.GroupId)
                 .OnDelete(DeleteBehavior.Cascade);
 
         }

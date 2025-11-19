@@ -109,6 +109,115 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "finelytics.Api.Controllers.GroupPlansController",
+    "Method": "GetGroupsPlans",
+    "RelativePath": "api/GroupPlans",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[finelytics.Models.GroupPlans, finelytics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "finelytics.Api.Controllers.GroupPlansController",
+    "Method": "CreateGroupsPlan",
+    "RelativePath": "api/GroupPlans",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "groupPlans",
+        "Type": "finelytics.Models.GroupPlans",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "finelytics.Models.GroupPlans",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "finelytics.Api.Controllers.GroupPlansController",
+    "Method": "GetGroupsPlan",
+    "RelativePath": "api/GroupPlans/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "finelytics.Models.GroupPlans",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "finelytics.Api.Controllers.GroupPlansController",
+    "Method": "UpdateGroupsPlan",
+    "RelativePath": "api/GroupPlans/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "groupsPlan",
+        "Type": "finelytics.Models.GroupPlans",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "finelytics.Api.Controllers.GroupPlansController",
+    "Method": "DeleteGroupsPlan",
+    "RelativePath": "api/GroupPlans/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "finelytics.Api.Controllers.GroupsController",
     "Method": "GetGroups",
     "RelativePath": "api/Groups",

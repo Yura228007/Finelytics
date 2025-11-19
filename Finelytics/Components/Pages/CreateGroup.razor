@@ -2,7 +2,6 @@
 @rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
 @inject NavigationManager Navigation
 @inject HttpClient Http
-@inject GroupsService GroupsService // Предполагаем, что есть GroupsService
 
 <link href="app.css" rel="stylesheet" />
 
@@ -15,12 +14,12 @@
     <div class="group-form-container">
         <div class="form-group">
             <label class="group-name-label" for="group-name-input">Название группы:</label>
-            <input type="text" id="group-name-input" @bind="newGroup.Name" class="form-control" placeholder="Название группы" required />
+            <input type="text" id="group-name-input" @bind="newGroup.Name" class="form-control" placeholder="Название группы"/>
         </div>
 
 
         <div class="form-actions">
-            <button class="btn-save-group" @onclick="@(() => Create())">Создать группу</button>
+            <button class="btn-primary" @onclick="@(() => Create())">Создать группу</button>
         </div>
     </div>
 </div>
@@ -30,9 +29,9 @@
     [SupplyParameterFromQuery(Name = "user_id")]
     public int Id { get; set; } = -1;
     private Group newGroup { get; set; } = new Group();
-    private void Create()
+    public void Create()
     {
-        if (string.IsNullOrWhiteSpace(newGroup.Name))
+        if (!string.IsNullOrWhiteSpace(newGroup.Name))
         {
             GroupsService.CurrentGroup = newGroup;
             Navigation.NavigateTo($"groups?user_id={Id}&action=create");

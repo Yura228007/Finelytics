@@ -44,6 +44,10 @@
     [SupplyParameterFromQuery(Name = "plan_id")]
     public int PlanId { get; set; }
 
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "group_get")]
+    public bool? IsGroupGet { get; set; }
+
     Plan planToEdit = new Plan();
 
     protected override async Task OnParametersSetAsync()
@@ -56,7 +60,15 @@
     }
     void Edit()
     {
-        PlansService.CurrentPlan = planToEdit;
-        Navigation.NavigateTo($"home?user_id={Id}&action=edit");
+        if((bool)IsGroupGet)
+        {
+            PlansService.CurrentPlan = planToEdit;
+            Navigation.NavigateTo($"group-plan?user_id={Id}&action=edit");
+        }
+        else
+        {
+            PlansService.CurrentPlan = planToEdit;
+            Navigation.NavigateTo($"home?user_id={Id}&action=edit");
+        }
     }
 }

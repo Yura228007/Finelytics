@@ -29,7 +29,7 @@
                     <div class="group-actions">
                         <button @onclick="@(() => RedirectToPage("group-plan"))" class="btn-secondary">Посмотреть планы группы</button>
                         <button @onclick="@(() => RedirectToPage("add-user-to-group"))" class="btn-primary">Добавить пользователя</button>
-                        <button @onclick="@(() => RedirectToPage("edit-group"))" class="btn-primary">Изменить данные группы</button>
+						<button @onclick="@(() => RedirectToPage($"edit-group?user_id={Id}&group_id={group.Id}"))" class="btn-primary">Изменить данные группы</button>
                     </div>
                 </div>
             }
@@ -94,7 +94,7 @@
 					UsersGroup ug = new UsersGroup();
 					ug.UserId = Id;
 					ug.GroupId = grs.Last().Id;
-					await Http.PostAsJsonAsync<UsersGroup>("usersgroups",ug);
+					await Http.PostAsJsonAsync<UsersGroup>("api/usersgroups", ug);
 					GroupsService.CurrentGroup = null;
 					await LoadGroups();
 				}
@@ -106,7 +106,7 @@
 			case "edit":
 				if (GroupsService.CurrentGroup != null)
 				{
-					await Http.PutAsJsonAsync<Group>("api/groups", GroupsService.CurrentGroup);
+					await Http.PutAsJsonAsync<Group>($"api/groups/{GroupsService.CurrentGroup.Id}", GroupsService.CurrentGroup);
 					GroupsService.CurrentGroup = null;
 					await LoadGroups();
 				}
@@ -124,6 +124,7 @@
 		List<int> userGroupsId = allUsersGroups.Where(ug => ug.UserId == Id).Select(ug => ug.GroupId).ToList();
 		groups.Clear();
 		groups = allGroups.Where(g => userGroupsId.Contains(g.Id)).ToList();
+		members.Clear();
 		foreach(UsersGroup ug in userGroups)
 		{
 			List<User> temp = new List<User>();
@@ -142,7 +143,7 @@
 	{
 		Action = null;
 		DeleteGroupId = null;
-		Navigation.NavigateTo($"transactions?user_id={Id}", replace: true);
+		Navigation.NavigateTo($"groups?user_id={Id}", replace: true);
 	}
 
 }

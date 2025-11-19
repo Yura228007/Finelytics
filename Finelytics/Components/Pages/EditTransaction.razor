@@ -58,7 +58,7 @@
     {
         if (!string.IsNullOrEmpty(transaction.Comment) && transaction.PlannedAmmount != 0)
         {
-            transaction.PlanId = Id;
+            transaction.PlanId = PlanId;
             TransactionsService.CurrentTransaction = transaction;
             isRedirect = true;
             // доделать, нужно чтобы был выбор категорий и у поля транзакции был ее id

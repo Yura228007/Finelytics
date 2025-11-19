@@ -1,5 +1,60 @@
-﻿<h3>EditGroup</h3>
+﻿@page "/edit-group"
+@rendermode Microsoft.AspNetCore.Components.Web.RenderMode.InteractiveServer
+@inject NavigationManager Navigation
+@inject HttpClient Http
+
+<link href="app.css" rel="stylesheet" />
+
+<div id="edit-group-page">
+    <header class="page-header">
+        <button class="btn-cancel" @onclick="@(() => RedirectToPage($"groups?user_id={Id}"))">Назад</button>
+        <h1>Редактирование группы</h1>
+    </header>
+
+    <div class="group-form-container">
+            <div class="form-group">
+                <label class="group-name-label" for="group-name-input">Название группы:</label>
+                <input type="text" id="group-name-input" @bind="groupToEdit.Name" class="form-control" placeholder="Название группы"/>
+            </div>
+
+
+            <div class="form-actions">
+                <button class="btn-primary" @onclick="@(() => Edit())">Сохранить изменения</button>
+            </div>
+    </div>
+</div>
 
 @code {
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "user_id")]
+    public int Id { get; set; } = -1;
 
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "group_id")]
+    public int GroupId { get; set; } = -1;
+
+
+    public Group groupToEdit { get; set; } = new Group();
+    public bool isRedirect { get; set; } = false;
+    protected override async Task OnParametersSetAsync()
+    {
+        if (!isRedirect)
+        {
+            groupToEdit = await Http.GetFromJsonAsync<Group>($"api/groups/{GroupId}");
+        }
+    }
+    void RedirectToPage(string url)
+    {
+        isRedirect = true;
+        Navigation.NavigateTo(url);
+    }
+    public void Edit()
+    {
+        if (!string.IsNullOrEmpty(groupToEdit.Name))
+        {
+            GroupsService.CurrentGroup = groupToEdit;
+            isRedirect = true;
+            Navigation.NavigateTo($"groups?user_id={Id}&action=edit");
+        }
+    }
 }

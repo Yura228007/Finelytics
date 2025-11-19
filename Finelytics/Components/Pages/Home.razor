@@ -160,7 +160,7 @@
 	public void DeletePlan(int id)
 	{
 		plans.Remove(plans.ElementAt(id - 1));// ElementAt(Id-1)
-		Navigation.NavigateTo($"home?id={Id}&del_id={id}&action=delete");
+		Navigation.NavigateTo($"home?user_id={Id}&del_id={id}&action=delete");
 	}
 	public void ClearProcessParams()
 	{

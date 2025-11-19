@@ -11,7 +11,7 @@ internal class Program
 
         builder.Services.AddDbContext<AppDbContext>(options =>
 //            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(builder.Configuration.GetConnectionString("OnThisComputerConnection")));
         builder.Services.AddControllersWithViews();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
@@ -34,6 +34,7 @@ internal class Program
         builder.Services.AddSingleton<PlansService>();
         builder.Services.AddSingleton<CategoriesService>();
         builder.Services.AddSingleton<TransactionsService>();
+        builder.Services.AddSingleton<GroupsService>();
 
         var app = builder.Build();
         if (app.Environment.IsDevelopment())

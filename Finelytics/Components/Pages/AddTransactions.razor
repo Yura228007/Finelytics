@@ -64,7 +64,7 @@
 	{
 		if (!string.IsNullOrEmpty(transaction.Comment) && transaction.PlannedAmmount != 0)
 		{
-			transaction.PlanId = Id;
+			transaction.PlanId = PlanId;
 			transaction.CategoryId += 1;
 			TransactionsService.CurrentTransaction = transaction;
 			RedirectToPage($"transactions?user_id={Id}&plan_id={PlanId}&action=create");
